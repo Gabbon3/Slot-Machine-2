@@ -34,13 +34,15 @@ html {
   width: 360px;
   height: 420px;
 }
-#display .col, #display .trave {
+#display .col,
+#display .trave {
   width: 60px;
   transition: 0.3s;
   position: relative;
   overflow: hidden;
 }
-#display .col span, #display .trave span {
+#display .col span,
+#display .trave span {
   position: absolute;
   top: 0;
   left: 0;
@@ -48,7 +50,8 @@ html {
   flex-wrap: wrap;
   height: 420px;
 }
-#display .col .item, #display .trave .item {
+#display .col .item,
+#display .trave .item {
   flex-grow: 1;
   /* Fai espandere ogni immagine per occupare lo spazio disponibile */
   width: 100%;
@@ -59,11 +62,40 @@ html {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  border: 0.25px solid goldenrod;
+  position: relative;
 }
-#display .col .item img, #display .trave .item img {
+#display .col .item img,
+#display .trave .item img {
   text-align: center;
   width: 100%;
-  max-height: 100%;
+}
+
+.motif {
+  --s: 17px;
+  --_s: calc(2*var(--s)) calc(2*var(--s));
+  --_g: 35.36% 35.36% at;
+  background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s), repeating-conic-gradient(var(--c) 0 25%, rgba(0, 0, 0, 0) 0 50%) 0 0/var(--_s), radial-gradient(var(--_c)) 0 calc(var(--s) / 2)/var(--s) var(--s) var(--c);
+}
+.motif.base {
+  --c: #5c1b1e;
+  --_c: #0000 66%, #912228 68% 70%, #0000 72%;
+}
+.motif.green {
+  --c: #2E5624;
+  --_c: #0000 66%, #3e8a2b 68% 70%, #0000 72%;
+}
+.motif.blue {
+  --c: #274D7C;
+  --_c: #0000 66%, #3970b4 68% 70%, #0000 72%;
+}
+.motif.purple {
+  --c: #5D2771;
+  --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
+}
+.motif.gold {
+  --c: rgb(189, 140, 17);
+  --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
 }
 
 .supporto {

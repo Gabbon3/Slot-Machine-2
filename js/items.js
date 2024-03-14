@@ -1,7 +1,6 @@
 class Items {
     constructor() {
-        this.griglia = [];
-        this.griglia_by_col = [];
+        this.griglia = []; // contiene una lista di array, ogni array rappresenta una colonna
         this.n_scatter = 0; // conteggio scatter
     }
     /**
@@ -31,10 +30,11 @@ class Items {
         this.griglia = this._init_griglia();
         this.n_scatter = 0;
         // ----
-        for (let r = 0; r < config.righe; r++) {
-            for (let c = 0; c < config.colonne; c++) {
-                this.griglia[r][c] = this.inizializza_nuovo_simbolo(r, c, indice);
-                if (this.griglia[r][c].index == config.indice_scatter) {
+        for (let c = 0; c < config.colonne; c++) {
+            let numero_righe = this.griglia[c].length;
+            for (let r = 0; r < numero_righe; r++) {
+                this.griglia[c][r] = this.inizializza_nuovo_simbolo(c, r, indice);
+                if (this.griglia[c][r].index == config.indice_scatter) {
                     this.n_scatter++;
                 }
             }
@@ -46,23 +46,26 @@ class Items {
      */
     _init_griglia() {
         let matrice = [];
-        for (let riga = 0; riga < config.righe; riga++) {
-            let riga_matrice = [];
-            for (let colonna = 0; colonna < config.colonne; colonna++) {
-                riga_matrice.push(0);
+        // per ogni colonna
+        for (let c = 0; c < config.colonne; c++) {
+            let numero_righe = random.min_max(2, config.righe);
+            let colonna_matrice = [];
+            // per ogni riga
+            for (let r = 0; r < numero_righe; r++) {
+                colonna_matrice.push(0);
             }
-            matrice.push(riga_matrice);
+            matrice.push(colonna_matrice);
         }
         return matrice;
     }
     /**
      * 
-     * @param {Number} riga 
      * @param {Number} colonna 
+     * @param {Number} riga 
      * @param {Number} indice forzatura indice
      * @returns 
      */
-    inizializza_nuovo_simbolo(riga, colonna, indice = null) {
+    inizializza_nuovo_simbolo(colonna, riga, indice = null) {
         const indice_del_simbolo = indice != null ? indice : this.get(config.rarita);
         // creo un nuovo oggetto per memorizzare l'item
         const result = {

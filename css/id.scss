@@ -9,7 +9,8 @@
     width: 360px;
     height: 420px;
 
-    .col, .trave {
+    .col,
+    .trave {
         width: 60px;
         transition: 0.3s;
         position: relative;
@@ -36,14 +37,58 @@
             display: inline-flex;
             justify-content: center;
             align-items: center;
+            // background-color: #5c1b1e;
+            border: 0.25px solid goldenrod;
+            position: relative;
+            // background-color: #5c1b1e;
+            // background-attachment: fixed;
 
             img {
                 text-align: center;
                 width: 100%;
-                max-height: 100%;
             }
         }
     }
+}
+
+.motif {
+    // motif background
+    --s: 17px;
+    --_s: calc(2*var(--s)) calc(2*var(--s));
+    --_g: 35.36% 35.36% at;
+    
+    &.base {
+        --c: #5c1b1e;
+        --_c: #0000 66%, #912228 68% 70%, #0000 72%;
+    }
+
+    &.green {
+        --c: #2E5624;
+        --_c: #0000 66%, #3e8a2b 68% 70%, #0000 72%;
+    }
+
+    &.blue {
+        --c: #274D7C;
+        --_c: #0000 66%, #3970b4 68% 70%, #0000 72%;
+    }
+
+    &.purple {
+        --c: #5D2771;
+        --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
+    }
+
+    &.gold {
+        --c: rgb(189, 140, 17);
+        --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
+    }
+
+    background:
+        radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
+        repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
+        radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
 }
 
 .supporto {

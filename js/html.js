@@ -8,20 +8,18 @@ class HTML {
     init() {
         let txt = '';
         items.set_griglia();
+        // ----
         for (let c = 0; c < config.colonne; c++) {
             let col = '<div class="col" id="c' + c + '"><span>';
-            for (let r = 0; r < config.righe; r++) {
-                col += `<div class="item" id='rc${r}${c}'>${this.items_to_emoji(items.griglia[r][c].index)}</div>`;
+            const numero_righe = items.griglia[c].length;
+            for (let r = 0; r < numero_righe; r++) {
+                const current_item = items.griglia[c][r].index;
+                col += `<div class="item motif ${this.item_bc(current_item)}" id='rc${c}${r}'>${this.items_to_emoji(current_item)}</div>`;
             }
             col += '</span></div>';
             txt += col;
         }
         get1('#display').innerHTML = txt;
-        for (let r = 0; r < config.righe; r++) {
-            for (let c = 0; c < config.colonne; c++) {
-                this.items[r][c] = get1(`#rc${r}${c}`);
-            }
-        }
     }
     /**
      * 
@@ -29,6 +27,23 @@ class HTML {
      */
     items_to_emoji(index) {
         return config.emoji[index];
+    }
+    /**
+     * 
+     * @param {Int} index 
+     */
+    item_bc(index) {
+        let classe = 'base';
+        if (index == 3 || index == 4) {
+            classe = 'green'
+        } else if (index == 2) {
+            classe = 'blue'
+        } else if (index == 1) {
+            classe = 'purple'
+        } else if (index == 0) {
+            classe = 'gold'
+        }
+        return classe;
     }
 }
 

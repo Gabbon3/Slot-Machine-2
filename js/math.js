@@ -56,7 +56,7 @@ class Random {
      * @returns {number}
      */
     min_max(min, max) {
-        return Math.round(Math.random() * (max - min + 1)) + min;
+        return Math.round(Math.random() * (max - min)) + min;
     }
     /**
      * genera un numero casuale sicuro

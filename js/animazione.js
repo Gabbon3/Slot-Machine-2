@@ -14,9 +14,11 @@ class Animazione {
     genera_colonna(result) {
         const span = document.createElement('span');
         let txt = '';
-        for (let i = 0; i < config.righe; i++) {
+        let numero_righe = random.min_max(2, config.righe);
+        let height = 100 / numero_righe;
+        for (let i = 0; i < numero_righe; i++) {
             const item = result ? result[i] : items.get();
-            txt += `<div class="item">${html.items_to_emoji(item)}</div>`;
+            txt += `<div class="item motif ${html.item_bc(item)}" style="height: ${height}%">${html.items_to_emoji(item)}</div>`;
         }
         span.innerHTML = txt;
         return span;
