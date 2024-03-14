@@ -1,0 +1,27 @@
+/*
+cd css
+sass --watch main.scss:main.css
+*/
+
+:root {
+    --bc: #222;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+#slot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bc);
+}
+
+@import 'id.scss';

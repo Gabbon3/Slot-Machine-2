@@ -1,0 +1,78 @@
+/*
+cd css
+sass --watch main.scss:main.css
+*/
+:root {
+  --bc: #222;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#slot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bc);
+}
+
+#display {
+  display: flex;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+  width: 360px;
+  height: 420px;
+}
+#display .col, #display .trave {
+  width: 60px;
+  transition: 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+#display .col span, #display .trave span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  height: 420px;
+}
+#display .col .item, #display .trave .item {
+  flex-grow: 1;
+  /* Fai espandere ogni immagine per occupare lo spazio disponibile */
+  width: 100%;
+  padding: 2px;
+  /* Aggiungi margine tra le immagini */
+  text-align: center;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+#display .col .item img, #display .trave .item img {
+  text-align: center;
+  width: 100%;
+  max-height: 100%;
+}
+
+.supporto {
+  width: 16.666%;
+  transform: translateX(-100%);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/*# sourceMappingURL=main.css.map */
