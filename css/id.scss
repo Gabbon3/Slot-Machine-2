@@ -53,6 +53,7 @@
 }
 
 .motif {
+    transition: 0.25s;
     // motif background
     --s: 17px;
     --_s: calc(2*var(--s)) calc(2*var(--s));
@@ -78,9 +79,25 @@
         --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
     }
 
-    &.gold {
+    &.gold, &.win {
         --c: rgb(189, 140, 17);
         --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
+    }
+
+    &.win {
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            border: 2px solid rgb(255, 242, 0);
+            transform: translate(-50%, -50%);
+            border-radius: 3px;
+        }
     }
 
     background:
@@ -90,6 +107,18 @@
         radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
         repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
         radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+}
+
+#vincita {
+    display: none;
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Kamikaze', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: gold;
+    -webkit-text-stroke: 3px #111;
+    font-size: 70px;
 }
 
 .supporto {

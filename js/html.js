@@ -5,16 +5,19 @@ class HTML {
     /**
      * inizializza l'html della pagina
      */
-    init() {
+    init(griglia) {
         let txt = '';
-        items.set_griglia();
+        if (!griglia) {
+            items.set_griglia();
+            griglia = items.griglia_indici;
+        }
         // ----
         for (let c = 0; c < config.colonne; c++) {
             let col = '<div class="col" id="c' + c + '"><span>';
-            const numero_righe = items.griglia[c].length;
+            const numero_righe = griglia[c].length;
             for (let r = 0; r < numero_righe; r++) {
-                const current_item = items.griglia[c][r].index;
-                col += `<div class="item motif ${this.item_bc(current_item)}" id='rc${c}${r}'>${this.items_to_emoji(current_item)}</div>`;
+                const current_item = griglia[c][r];
+                col += `<div class="item motif ${this.item_bc(current_item)}" id='cr${c}${r}'>${this.items_to_emoji(current_item)}</div>`;
             }
             col += '</span></div>';
             txt += col;
@@ -34,14 +37,14 @@ class HTML {
      */
     item_bc(index) {
         let classe = 'base';
-        if (index == 4 || index == 5) {
+        if (slot.simboli_espansione.includes(index) || index == 0) {
+            classe = 'gold'
+        } else if (index == 4 || index == 5) {
             classe = 'green'
         } else if (index == 2 || index == 3) {
             classe = 'blue'
         } else if (index == 1) {
             classe = 'purple'
-        } else if (index == 0) {
-            classe = 'gold'
         }
         return classe;
     }
@@ -51,7 +54,6 @@ class HTML {
     spin() {
         const puntata = parseInt($('#puntata').val());
         const vincita = slot.spin(puntata);
-        console.log(vincita);
     }
 }
 

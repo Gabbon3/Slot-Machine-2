@@ -4,15 +4,6 @@ class Config {
         this.colonne = 6;
         this.i_wild = 0; // indice del wild
         this.i_scatter = 0; // indice dello scatter
-        // this.emoji = [
-        //     '💲',
-        //     '🛸',
-        //     '👽',
-        //     '🛰️',
-        //     '🚀',
-        //     '📡',
-        //     '🌍'
-        // ];
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
             '<img src="./img/katana.png"></img>', // 1
@@ -27,10 +18,24 @@ class Config {
             '<img src="./img/card_10.png"></img>', // 10
             '<img src="./img/card_9.png"></img>', // 11
         ];
+        this.nomi_emoji = [
+            'panda',
+            'katana',
+            'bonsai',
+            'torii',
+            'sushi',
+            'bamboo',
+            'A',
+            'K',
+            'Q',
+            'J',
+            '10',
+            '9',
+        ]
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            10, // 0
+            8, // 0
             15, // 1
             18, // 2
             21, // 3

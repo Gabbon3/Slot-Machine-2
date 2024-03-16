@@ -14,11 +14,15 @@ $(document).ready(() => {
     $(window).resize(function() {
         adatta_display();
     });
+    // vincita
+    $('#vincita').click(() => {
+        $('#vincita').hide();
+    });
 });
 
 function adatta_display() {
     const larghezza_finestra = window.innerWidth;
-    const altezza_finestra = window.innerHeight * 0.9;
+    const altezza_finestra = window.innerHeight * 0.85;
 
     // Calcola la larghezza e l'altezza della griglia in base alla dimensione minore
     let larghezza_display, altezza_display;

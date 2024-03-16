@@ -37,7 +37,7 @@ class Items {
                 const nuovo_simbolo = this.inizializza_nuovo_simbolo(c, r, indice)
                 this.griglia[c][r] = nuovo_simbolo;
                 this.griglia_indici[c][r] = nuovo_simbolo.index;
-                if (this.griglia[c][r].index == config.indice_scatter) {
+                if (this.griglia_indici[c][r] == config.i_scatter) {
                     this.n_scatter++;
                 }
             }

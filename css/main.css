@@ -70,6 +70,7 @@ html {
 }
 
 .motif {
+  transition: 0.25s;
   --s: 17px;
   --_s: calc(2*var(--s)) calc(2*var(--s));
   --_g: 35.36% 35.36% at;
@@ -91,9 +92,35 @@ html {
   --c: #5D2771;
   --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
 }
-.motif.gold {
+.motif.gold, .motif.win {
   --c: rgb(189, 140, 17);
   --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
+}
+.motif.win {
+  position: relative;
+}
+.motif.win::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+  border: 2px solid rgb(255, 242, 0);
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+}
+
+#vincita {
+  display: none;
+  position: fixed;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Kamikaze", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  color: gold;
+  -webkit-text-stroke: 3px #111;
+  font-size: 70px;
 }
 
 .supporto {

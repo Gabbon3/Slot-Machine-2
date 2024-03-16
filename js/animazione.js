@@ -5,6 +5,7 @@ class Animazione {
     shuffle() {
         if (this.is_shuffle) return;
         this.is_shuffle = true;
+        $('#vincita').hide();
         const colonne = geta('.col');
         this.for_interval((i) => {
             this.anima_colonna(colonne[i], i, 600, 1);
@@ -15,14 +16,14 @@ class Animazione {
      * @param {HTML} result 
      * @returns 
      */
-    genera_colonna(result) {
+    genera_colonna(result, indice_colonna = 0) {
         const span = document.createElement('span');
         let txt = '';
         let numero_righe = result ? result.length : random.min_max(2, config.righe);
         let height = 100 / numero_righe;
-        for (let i = 0; i < numero_righe; i++) {
-            const item = result ? result[i].index : items.get();
-            txt += `<div class="item motif ${html.item_bc(item)}" style="height: ${height}%">${html.items_to_emoji(item)}</div>`;
+        for (let r = 0; r < numero_righe; r++) {
+            const item = result ? result[r].index : items.get();
+            txt += `<div id='cr${indice_colonna}${r}' class="item motif ${html.item_bc(item)}" style="height: ${height}%">${html.items_to_emoji(item)}</div>`;
         }
         span.innerHTML = txt;
         return span;
@@ -76,7 +77,7 @@ class Animazione {
         }, (timeout * 0.5));
         // ultimo giro
         function ultimo_giro() {
-            const new_span = animazione.genera_colonna(items.griglia[indice_colonna], true);
+            const new_span = animazione.genera_colonna(items.griglia[indice_colonna], indice_colonna);
             new_span.style.top = '-100%';
             colonna.appendChild(new_span);
             $(new_span).animate({
@@ -90,10 +91,100 @@ class Animazione {
                     }, 70);
                     // se ultima colonna
                     if (indice_colonna == (config.colonne - 1)) {
-                        animazione.is_shuffle = false;
+                        animazione.mostra_vincita();
+                        // verifico se ci sono scatter
+                        slot.scatter();
                     }
                 }
             });
+        }
+    }
+    /**
+     * evidenzia i simboli che hanno vinto
+     */
+    mostra_vincita() {
+        if (slot.simboli_vincenti.length == 0) {
+            end();
+            return;
+        }
+        this.for_interval((i) => {
+            // simbolo vincente
+            const vincente = slot.simboli_vincenti[i];
+            // console.log(vincente);
+            // per ogni colonna
+            for (let c = 0; c < vincente.colonna; c++) {
+                // per ogni riga presente nella colonna[c]
+                for (let r = 0; r < items.griglia[c].length; r++) {
+                    const current = items.griglia_indici[c][r];
+                    if (current == vincente.index || current == config.i_wild) {
+                        const target = `#cr${c}${r}`;
+                        $(target).addClass('win');
+                    }
+                }
+            }
+        }, 0, (slot.simboli_vincenti.length - 1), 350, () => {
+            end();
+            // stampa il guadagno
+        });
+        function end() {
+            if (slot.simboli_espansione.length > 0) {
+                animazione.simboli_espansione();
+            } else {
+                $('#vincita').show();
+                $('#vincita').text(slot.vincita_giro.toFixed(2));
+                animazione.is_shuffle = false;
+            }
+            // ---
+        }
+    }
+    simboli_espansione() {
+        const copia_griglia = items.griglia_indici.map(subArray => [...subArray]);
+        this.for_interval((s) => {
+            const simbolo_espansione = slot.simboli_espansione[s];
+            const elementi_minimi_simbolo = config.colonne - config.moltiplicatori[simbolo_espansione].length + 1;
+            // creo una copia deglla griglia
+            const g = items.griglia_indici.map(subArray => [...subArray]);
+            const griglia_espansione = [];
+            for (let c = 0; c < config.colonne; c++) {
+                // se la colonna attuale contiene il simbolo espansione
+                if (g[c].includes(simbolo_espansione)) {
+                    let colonna_espansione = [];
+                    // lo espando
+                    for (let i = 0; i < g[c].length; i++) {
+                        g[c][i] = simbolo_espansione;
+                        colonna_espansione.push(simbolo_espansione);
+                    }
+                    griglia_espansione.push(colonna_espansione);
+                }
+            }
+            if (griglia_espansione.length >= elementi_minimi_simbolo) {
+                slot.vincita_giro += slot.calcola_vincita(griglia_espansione, 0);
+                animazione.espandi_griglia(g, simbolo_espansione);
+            }
+        }, 0, (slot.simboli_espansione.length - 1), 650, () => {
+            $('#vincita').show();
+            $('#vincita').text(slot.vincita_giro.toFixed(2));
+            animazione.is_shuffle = false;
+            slot.giri_bonus--;
+            // disattivo la funzione scatter
+            if (slot.giri_bonus == 0) {
+                slot._scatter = false;
+                slot.simboli_espansione = [];
+            }
+        });
+    }
+    espandi_griglia(griglia_espansa, simbolo_espansione) {
+        // per ogni colonna
+        for (let c = 0; c < config.colonne; c++) {
+            this.for_interval((r) => {
+                if (items.griglia_indici[c][r] != griglia_espansa[c][r] || items.griglia_indici[c][r] == simbolo_espansione) {
+                    $(`#cr${c}${r}`).addClass('win');
+                    $(`#cr${c}${r}`).html(html.items_to_emoji(simbolo_espansione));
+                } else {
+                    $(`#cr${c}${r}`).removeClass('win');
+                    $(`#cr${c}${r}`).html(html.items_to_emoji(items.griglia_indici[c][r]));
+                }
+            }, 0, (items.griglia_indici[c].length - 1), 25);
         }
     }
     /**
