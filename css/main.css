@@ -31,27 +31,25 @@ html {
   align-items: stretch;
   position: relative;
   overflow: hidden;
-  width: 360px;
-  height: 420px;
+  width: 480px;
+  height: 560px;
+  font-family: "Kamikaze";
 }
-#display .col,
-#display .trave {
-  width: 60px;
+#display .col {
+  width: 16.6666666667%;
   transition: 0.3s;
   position: relative;
   overflow: hidden;
 }
-#display .col span,
-#display .trave span {
+#display .col span {
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
   flex-wrap: wrap;
-  height: 420px;
+  height: 100%;
 }
-#display .col .item,
-#display .trave .item {
+#display .col .item {
   flex-grow: 1;
   /* Fai espandere ogni immagine per occupare lo spazio disponibile */
   width: 100%;
@@ -65,10 +63,10 @@ html {
   border: 0.25px solid goldenrod;
   position: relative;
 }
-#display .col .item img,
-#display .trave .item img {
+#display .col .item img {
   text-align: center;
-  width: 100%;
+  width: 90%;
+  aspect-ratio: 1/1;
 }
 
 .motif {

@@ -34,9 +34,9 @@ class HTML {
      */
     item_bc(index) {
         let classe = 'base';
-        if (index == 3 || index == 4) {
+        if (index == 4 || index == 5) {
             classe = 'green'
-        } else if (index == 2) {
+        } else if (index == 2 || index == 3) {
             classe = 'blue'
         } else if (index == 1) {
             classe = 'purple'
@@ -44,6 +44,14 @@ class HTML {
             classe = 'gold'
         }
         return classe;
+    }
+    /**
+     * 
+     */
+    spin() {
+        const puntata = parseInt($('#puntata').val());
+        const vincita = slot.spin(puntata);
+        console.log(vincita);
     }
 }
 

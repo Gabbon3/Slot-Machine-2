@@ -7,17 +7,21 @@ class Animazione {
         this.is_shuffle = true;
         const colonne = geta('.col');
         this.for_interval((i) => {
-            this.anima_colonna(colonne[i], 600, 4);
-        }, 0, config.colonne - 1, 100);
-        this.is_shuffle = false;
+            this.anima_colonna(colonne[i], i, 600, 1);
+        }, 0, config.colonne - 1, 50);
     }
+    /**
+     * 
+     * @param {HTML} result 
+     * @returns 
+     */
     genera_colonna(result) {
         const span = document.createElement('span');
         let txt = '';
-        let numero_righe = random.min_max(2, config.righe);
+        let numero_righe = result ? result.length : random.min_max(2, config.righe);
         let height = 100 / numero_righe;
         for (let i = 0; i < numero_righe; i++) {
-            const item = result ? result[i] : items.get();
+            const item = result ? result[i].index : items.get();
             txt += `<div class="item motif ${html.item_bc(item)}" style="height: ${height}%">${html.items_to_emoji(item)}</div>`;
         }
         span.innerHTML = txt;
@@ -25,12 +29,11 @@ class Animazione {
     }
     /**
      * 
-     * @param {*} colonna indice colonna
+     * @param {HTML} colonna indice colonna
      * @param {*} timeout millisecondi
      * @param {*} n quante volte animarla
-     * @param {*} result il risultato finale che bisogna ottenere alla fine
      */
-    anima_colonna(colonna, timeout, n = 3, result) {
+    anima_colonna(colonna, indice_colonna, timeout, n = 3) {
         let span = colonna.querySelector('span');
         let i = 0;
         let ease = 'linear';
@@ -73,7 +76,7 @@ class Animazione {
         }, (timeout * 0.5));
         // ultimo giro
         function ultimo_giro() {
-            const new_span = animazione.genera_colonna(result);
+            const new_span = animazione.genera_colonna(items.griglia[indice_colonna], true);
             new_span.style.top = '-100%';
             colonna.appendChild(new_span);
             $(new_span).animate({
@@ -85,6 +88,10 @@ class Animazione {
                     $(new_span).animate({
                         top: 0
                     }, 70);
+                    // se ultima colonna
+                    if (indice_colonna == (config.colonne - 1)) {
+                        animazione.is_shuffle = false;
+                    }
                 }
             });
         }

@@ -6,12 +6,12 @@
     align-items: stretch;
     position: relative;
     overflow: hidden;
-    width: 360px;
-    height: 420px;
-
-    .col,
-    .trave {
-        width: 60px;
+    width: 480px;
+    height: 560px;
+    font-family: 'Kamikaze';
+ 
+    .col {
+        width: calc(100% / 6);
         transition: 0.3s;
         position: relative;
         overflow: hidden;
@@ -22,7 +22,7 @@
             left: 0;
             display: flex;
             flex-wrap: wrap;
-            height: 420px;
+            height: 100%;
         }
 
         .item {
@@ -45,7 +45,8 @@
 
             img {
                 text-align: center;
-                width: 100%;
+                width: 90%;
+                aspect-ratio: 1 / 1;
             }
         }
     }

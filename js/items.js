@@ -1,6 +1,7 @@
 class Items {
     constructor() {
         this.griglia = []; // contiene una lista di array, ogni array rappresenta una colonna
+        this.griglia_indici = [];
         this.n_scatter = 0; // conteggio scatter
     }
     /**
@@ -33,7 +34,9 @@ class Items {
         for (let c = 0; c < config.colonne; c++) {
             let numero_righe = this.griglia[c].length;
             for (let r = 0; r < numero_righe; r++) {
-                this.griglia[c][r] = this.inizializza_nuovo_simbolo(c, r, indice);
+                const nuovo_simbolo = this.inizializza_nuovo_simbolo(c, r, indice)
+                this.griglia[c][r] = nuovo_simbolo;
+                this.griglia_indici[c][r] = nuovo_simbolo.index;
                 if (this.griglia[c][r].index == config.indice_scatter) {
                     this.n_scatter++;
                 }
@@ -46,6 +49,7 @@ class Items {
      */
     _init_griglia() {
         let matrice = [];
+        this.griglia_indici = [];
         // per ogni colonna
         for (let c = 0; c < config.colonne; c++) {
             let numero_righe = random.min_max(2, config.righe);
@@ -54,6 +58,7 @@ class Items {
             for (let r = 0; r < numero_righe; r++) {
                 colonna_matrice.push(0);
             }
+            this.griglia_indici.push([...colonna_matrice]);
             matrice.push(colonna_matrice);
         }
         return matrice;
