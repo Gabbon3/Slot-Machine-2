@@ -179,6 +179,10 @@ html {
   background-color: transparent;
 }
 
+#informazioni img {
+  width: 50px;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

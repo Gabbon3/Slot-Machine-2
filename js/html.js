@@ -30,7 +30,7 @@ class HTML {
             const r = config.rarita[i] * 100;
             const html = `
                 <tr>
-                    <th scope="row">${config.nomi_emoji[i]}</th>
+                    <th scope="row">${config.emoji[i]}</th>
                     <td id="r_${i}">${(r - prev_r).toFixed(2)}%</td>
                     <td id="m_${i}">${html_moltiplicatori(config.moltiplicatori[i])}</td>
                 </tr>
