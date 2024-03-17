@@ -9,6 +9,20 @@
     width: 480px;
     height: 560px;
     font-family: 'Kamikaze';
+
+    --c: #111;
+    --s: 30px;
+    --_s: calc(2*var(--s)) calc(2*var(--s));
+    --_g: 35.36% 35.36% at;
+    --_c: #0000 66%, #444 68% 70%, #0000 72%;
+
+    background:
+        radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
+        radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
+        radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
+        repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
+        radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
  
     .col {
         width: calc(100% / 6);
@@ -40,13 +54,12 @@
             // background-color: #5c1b1e;
             border: 0.25px solid goldenrod;
             position: relative;
-            // background-color: #5c1b1e;
-            // background-attachment: fixed;
-
+            
             img {
                 text-align: center;
                 width: 90%;
                 aspect-ratio: 1 / 1;
+                z-index: 5;
             }
         }
     }
@@ -54,34 +67,34 @@
 
 .motif {
     transition: 0.25s;
-    // motif background
-    --s: 17px;
-    --_s: calc(2*var(--s)) calc(2*var(--s));
-    --_g: 35.36% 35.36% at;
+    --opacacita: 0.7;
     
     &.base {
-        --c: #5c1b1e;
-        --_c: #0000 66%, #912228 68% 70%, #0000 72%;
+        --c: rgba(92, 27, 30, var(--opacacita));
+        --w: rgb(92, 27, 30);
     }
 
     &.green {
-        --c: #2E5624;
-        --_c: #0000 66%, #3e8a2b 68% 70%, #0000 72%;
+        --c: rgba(46, 86, 36, var(--opacacita));
+        --w: rgb(46, 86, 36);
     }
 
     &.blue {
-        --c: #274D7C;
-        --_c: #0000 66%, #3970b4 68% 70%, #0000 72%;
+        --c: rgba(39, 77, 124, var(--opacacita));
+        --w: rgb(39, 77, 124);
     }
 
     &.purple {
-        --c: #5D2771;
-        --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
+        --c: rgba(93, 39, 113, var(--opacacita));
+        --w: rgb(93, 39, 113);
     }
 
     &.gold, &.win {
-        --c: rgb(189, 140, 17);
-        --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
+        --c: rgba(189, 140, 17, 0.4);
+    }
+
+    &.gold {
+        --w: rgb(255, 242, 0);
     }
 
     &.win {
@@ -92,38 +105,72 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: calc(100% - 10px);
-            height: calc(100% - 10px);
-            border: 2px solid rgb(255, 242, 0);
+            width: calc(100% - 15px);
+            height: calc(100% - 15px);
+            // border: 2px solid rgb(255, 242, 0);
+            box-shadow: 
+                0 0 0 1px gold,
+                0 0 0 4px var(--w),
+                0 0 0 5px gold;
             transform: translate(-50%, -50%);
             border-radius: 3px;
         }
     }
 
-    background:
-        radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
-        radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
-        radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
-        radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
-        repeating-conic-gradient(var(--c) 0 25%, #0000 0 50%) 0 0/var(--_s),
-        radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c);
+    background-color: var(--c);
 }
 
 #vincita {
     display: none;
     position: fixed;
-    bottom: 10%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
-    font-family: 'Kamikaze', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: 'Kamikaze';
     color: gold;
     -webkit-text-stroke: 3px #111;
     font-size: 70px;
+    z-index: 6;
+
+    b {
+        font-family: monospace;
+    }
 }
 
-.supporto {
-    width: 16.666%;
-    transform: translateX(-100%);
+#controller {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    width: 98%;
+    z-index: 7;
+
+    #spin {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 60px;
+        padding: 0;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+            background-color: transparent;
+        }
+    }
+}
+
+#wallet {
+    font-weight: bold;
+    font-size: 35px;
+    -webkit-text-stroke: 1px #111;
+    letter-spacing: -3px;
+    padding: 10px;
+
+    &:hover {
+        background-color: transparent;
+    }
 }
 
 ::-webkit-scrollbar {

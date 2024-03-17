@@ -7,9 +7,11 @@ class Animazione {
         this.is_shuffle = true;
         $('#vincita').hide();
         const colonne = geta('.col');
-        this.for_interval((i) => {
-            this.anima_colonna(colonne[i], i, 600, 1);
-        }, 0, config.colonne - 1, 50);
+        let k = 0;
+        for (let i = 0; i < config.colonne; i++) {
+            this.anima_colonna(colonne[i], i, 500, k);
+            k++;
+        }
     }
     /**
      * 
@@ -81,10 +83,10 @@ class Animazione {
             new_span.style.top = '-100%';
             colonna.appendChild(new_span);
             $(new_span).animate({
-                top: '15px'
+                top: '30px'
             }, {
                 duration: (timeout * 0.5),
-                easing: ease,
+                easing: 'swing',
                 complete: () => {
                     $(new_span).animate({
                         top: 0
@@ -131,7 +133,11 @@ class Animazione {
                 animazione.simboli_espansione();
             } else {
                 $('#vincita').show();
-                $('#vincita').text(slot.vincita_giro.toFixed(2));
+                $('#vincita').html(slot.vincita_giro.toFixed(2));
+                // utente
+                utente.wallet += slot.vincita_giro;
+                utente.html_wallet();
+                html.mostra_calcoli(' = ' + slot.vincita_giro.toFixed(2) + '€');
                 animazione.is_shuffle = false;
             }
             // ---
@@ -164,6 +170,11 @@ class Animazione {
         }, 0, (slot.simboli_espansione.length - 1), 650, () => {
             $('#vincita').show();
             $('#vincita').text(slot.vincita_giro.toFixed(2));
+            // utente
+            utente.wallet += slot.vincita_giro;
+            utente.html_wallet();
+            // ---
+            html.mostra_calcoli(' = <b>' + slot.vincita_giro.toFixed(2) + '€</b>');
             animazione.is_shuffle = false;
             slot.giri_bonus--;
             // disattivo la funzione scatter
@@ -171,6 +182,7 @@ class Animazione {
                 slot._scatter = false;
                 slot.simboli_espansione = [];
             }
+            html.scatter();
         });
     }
     espandi_griglia(griglia_espansa, simbolo_espansione) {
@@ -184,7 +196,7 @@ class Animazione {
                     $(`#cr${c}${r}`).removeClass('win');
                     $(`#cr${c}${r}`).html(html.items_to_emoji(items.griglia_indici[c][r]));
                 }
-            }, 0, (items.griglia_indici[c].length - 1), 25);
+            }, 0, (items.griglia_indici[c].length - 1), 20);
         }
     }
     /**

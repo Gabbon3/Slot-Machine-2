@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot 2</title>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/5658864399.js" crossorigin="anonymous"></script>
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -20,6 +22,7 @@
     <script src="./js/animazione.js"></script>
     <script src="./js/index.js"></script>
     <script src="./js/jquery.js"></script>
+    <script src="./js/utente.js"></script>
 </head>
 
 <body>
@@ -28,11 +31,75 @@
             <!-- generazione dinamica -->
         </div>
         <div id="controller">
-            <button class="btn" id="spin">Spin</button>
-            <input type="number" id="puntata" value="1">
+            <div class="btn-sequence">
+                <!-- <span class="btn trasparente disabled">Giri bonus: <b id="html_giri_bonus">0</b></span> -->
+                <button class="btn open" data-target="finestra_utente"><i class="fa-regular fa-user"></i></button>
+                <button class="btn open" data-target="finestra_calcoli"><i class="fa-solid fa-calculator"></i></button>
+                <button class="btn open" data-target="finestra_puntata"><i class="fa-solid fa-money-bill-1-wave"></i></button>
+                <button class="btn open" data-target="finestra_informazioni"><i class="fa-solid fa-info"></i></button>
+            </div>
+            <span class="btn trasparente disabled" id="wallet">5000.00€</span>
+            <button class="btn trasparente circle" id="spin"><i class="fa-solid fa-play"></i></button>
         </div>
         <span id="vincita">0.00</span>
     </div>
+    <!-- finestre -->
+    <!-- puntata -->
+    <div class="finestra glass" id="finestra_puntata">
+        <button class="btn close" data-target="finestra_puntata">X</button>
+        <h2>Puntata</h2>
+        <hr>
+        <p>
+            Seleziona dal menu la puntata €:
+        </p>
+        <select class="input" name="puntata" id="puntata">
+            <option value="0.50">0.50</option>
+            <option value="1.00" selected>1.00</option>
+            <option value="2.50">2.50</option>
+            <option value="5.00">5.00</option>
+            <option value="10.00">10.00</option>
+            <option value="20.00">20.00</option>
+            <option value="50.00">50.00</option>
+            <option value="75.00">75.00</option>
+            <option value="100.00">100.00</option>
+        </select>
+    </div>
+    <!-- calcoli -->
+    <div class="finestra glass" id="finestra_calcoli">
+        <button class="btn close" data-target="finestra_calcoli">X</button>
+        <h2>Calcoli</h2>
+        <hr>
+        <p id="calcoli_demo"></p>
+    </div>
+    <!-- informazioni -->
+    <div class="finestra glass" id="finestra_informazioni">
+        <button class="btn close" data-target="finestra_informazioni">X</button>
+        <h2>Informazioni</h2>
+        <hr>
+        <table id="informazioni">
+            <thead>
+                <th>#</th>
+                <th>Rarità</th>
+                <th>Moltiplicatore</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- utente -->
+    <div class="finestra glass" id="finestra_utente">
+        <button class="btn close" data-target="finestra_utente">X</button>
+        <h2>Utente</h2>
+        <hr>
+        <h3>Ricomincia</h3>
+        <p>
+            Ricomincia il gioco portando nuovamente il tuo wallet a 5000.00€
+        </p>
+        <button class="btn danger" id="reset_game">Reset</button>
+    </div>
+    <!-- bc finestre -->
+    <div id="bc_finestre" data-target=""></div>
 </body>
 
 </html>

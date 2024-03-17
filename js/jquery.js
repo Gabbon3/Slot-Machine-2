@@ -1,13 +1,11 @@
 $(document).ready(() => {
     adatta_display();
     $('#spin').click(() => {
-        if (animazione.is_shuffle) return;
-        html.spin();
+        spin_game();
     });
     $(document).keydown(event => {
         if (event.keyCode === 32) {
-            if (animazione.is_shuffle) return;
-            html.spin();
+            spin_game();
         }
     });
     // Chiama la funzione ogni volta che la finestra viene ridimensionata
@@ -18,21 +16,56 @@ $(document).ready(() => {
     $('#vincita').click(() => {
         $('#vincita').hide();
     });
+    // btn open and close
+    $(document).on('click', '.close', (btn) => {
+        btn = btn.currentTarget;
+        const target = $(btn).attr('data-target');
+        $('#' + target).fadeOut(100);
+        $('#bc_finestre').fadeOut(100);
+    });
+    $(document).on('click', '.open', (btn) => {
+        btn = btn.currentTarget;
+        const target = $(btn).attr('data-target');
+        $('#' + target).fadeIn(100);
+        $('#bc_finestre').attr('data-target', target);
+        $('#bc_finestre').fadeIn(100);
+    });
+    $('#bc_finestre').click((bc) => {
+        bc = bc.currentTarget;
+        const target = $(bc).attr('data-target');
+        $('#' + target).fadeOut(100);
+        $(bc).fadeOut(100);
+    });
+    // utente
+    $('#reset_game').click(() => {
+        utente.reset();
+    });
 });
+
+function spin_game() {
+    const puntata = parseInt($('#puntata').val());
+    const procedi = utente.spin(puntata);
+    if (animazione.is_shuffle || !procedi) return;
+    html.spin(puntata);
+}
 
 function adatta_display() {
     const larghezza_finestra = window.innerWidth;
-    const altezza_finestra = window.innerHeight * 0.85;
+    const altezza_finestra = window.innerHeight;
 
     // Calcola la larghezza e l'altezza della griglia in base alla dimensione minore
     let larghezza_display, altezza_display;
 
-    if ((larghezza_finestra / 7) * 8 <= altezza_finestra) {
+    // proporzioni per altezza e larghezza
+    const w = 9;
+    const h = 8;
+
+    if ((larghezza_finestra / h) * w <= altezza_finestra) {
         larghezza_display = larghezza_finestra;
-        altezza_display = (larghezza_finestra / 7) * 8;
+        altezza_display = (larghezza_finestra / h) * w;
     } else {
         altezza_display = altezza_finestra;
-        larghezza_display = (altezza_finestra / 8) * 7;
+        larghezza_display = (altezza_finestra / w) * h;
     }
 
     // Imposta le dimensioni della griglia

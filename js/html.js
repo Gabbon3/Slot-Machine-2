@@ -23,6 +23,30 @@ class HTML {
             txt += col;
         }
         get1('#display').innerHTML = txt;
+        // ---
+        let prev_r = 0;
+        get1('#informazioni tbody').innerHTML = '';
+        for (let i = 0; i < config.n_emoji; i++) {
+            const r = config.rarita[i] * 100;
+            const html = `
+                <tr>
+                    <th scope="row">${config.nomi_emoji[i]}</th>
+                    <td id="r_${i}">${(r - prev_r).toFixed(2)}%</td>
+                    <td id="m_${i}">${html_moltiplicatori(config.moltiplicatori[i])}</td>
+                </tr>
+            `;
+            get1('#informazioni tbody').innerHTML += html;
+            prev_r = r;
+        }
+
+        function html_moltiplicatori(moltiplicatori_simbolo) {
+            let text = '';
+            const min = config.colonne - moltiplicatori_simbolo.length + 1;
+            for (let i = 0; i < moltiplicatori_simbolo.length; i++) {
+                text += (min + i) + 'x: ' + moltiplicatori_simbolo[i] + '<br>';
+            }
+            return text;
+        }
     }
     /**
      * 
@@ -48,11 +72,24 @@ class HTML {
         }
         return classe;
     }
+    mostra_calcoli(txt) {
+        get1('#calcoli_demo').innerHTML += txt + '<br><br>';
+    }
+    scatter() {
+        $('#puntata').prop('disabled', slot._scatter);
+        $('#html_giri_bonus').text(slot.giri_bonus);
+        // se scatter attivo
+        if (slot._scatter) {
+
+        } else {
+
+        }
+    }
     /**
      * 
      */
-    spin() {
-        const puntata = parseInt($('#puntata').val());
+    spin(puntata) {
+        get1('#calcoli_demo').innerHTML = '';
         const vincita = slot.spin(puntata);
     }
 }

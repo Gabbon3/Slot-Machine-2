@@ -2,10 +2,8 @@
 cd css
 sass --watch main.scss:main.css
 */
-
-:root {
-    --bc: #222;
-}
+@import 'variabili.scss';
+@import 'font.scss';
 
 * {
     box-sizing: border-box;
@@ -13,6 +11,8 @@ sass --watch main.scss:main.css
 
 html {
     scroll-behavior: smooth;
+    color: var(--color);
+    font-family: var(--font-family);
 }
 
 #slot {
@@ -25,3 +25,4 @@ html {
 }
 
 @import 'id.scss';
+@import 'comuni.scss';

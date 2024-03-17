@@ -1,0 +1,144 @@
+.finestra {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 95vh;
+    max-width: 95vw;
+    min-width: 75vw;
+    min-height: 50vh;
+    overflow-y: scroll;
+    z-index: 7;
+}
+
+#bc_finestre {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(34, 34, 34, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+h3 {
+    font-size: 27px;
+}
+
+p {
+    font-size: var(--p-font-size);
+    line-height: 1.5;
+}
+
+.btn {
+    --bc-btn: #252525;
+    background-color: var(--bc-btn);
+    color: var(--color);
+    font-size: var(--p-font-size);
+    border: none;
+    border-radius: 10px;
+    padding: 20px 25px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: #333;
+    }
+
+    &.trasparente {
+        background-color: transparent;
+
+        &:hover {
+            background-color: rgba(51, 51, 51, 0.4);
+        }
+    }
+
+    &.danger {
+        background-color: #ab2f2f;
+    }
+
+    &.circle {
+        padding: 15px;
+        border-radius: 50%;
+    }
+
+    &.disabled {
+        cursor: default;
+
+        &:hover {
+            background-color: var(--bc-btn);
+        }
+    }
+}
+
+.btn-group {
+    margin: 10px 0;
+    display: flex;
+    gap: 5px;
+}
+
+.btn-sequence {
+    display: inline-flex;
+
+    .btn {
+        border-radius: 0;
+        border-right: 1px solid #444;
+    }
+
+    .btn:first-of-type {
+        border-radius: 10px 0 0 10px;
+    }
+
+    .btn:last-of-type {
+        border-radius: 0 10px 10px 0;
+        border: none;
+    }
+}
+
+.input {
+    background-color: rgba(51, 51, 51, 0.4);
+    color: var(--color);
+    padding: 10px 5px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-size: var(--p-font-size);
+}
+
+.glass {
+    background-color: var(--bc-finestra);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+table {
+    text-align: left;
+    font-size: var(--p-font-size);
+    width: 100%;
+    border: 1px solid #444;
+
+    th, td {
+        padding: 5px;
+        border: 1px solid #444;
+    }
+}

@@ -33,20 +33,30 @@ class Slot {
     scatter() {
         // se ci sono piu di tre scatter nel giro si attiva la funzione bonus
         if (items.n_scatter >= 3) {
-            // indico che la funzione scatter è attiva
-            this._scatter = true;
             // ---
-            let nuovo_simbolo_espansione = random.min_max(1, config.n_emoji - 1);
-            while (this.simboli_espansione.includes(nuovo_simbolo_espansione)) {
+            let nuovo_simbolo_espansione = null;
+            if (this.simboli_espansione.length < 4) {
                 nuovo_simbolo_espansione = random.min_max(1, config.n_emoji - 1);
+                while (this.simboli_espansione.includes(nuovo_simbolo_espansione)) {
+                    nuovo_simbolo_espansione = random.min_max(1, config.n_emoji - 1);
+                }
             }
             this.simboli_espansione.push(nuovo_simbolo_espansione);
-            const giri_bonus = random.min_max(3, 12);
+            /*
+            Se lo scatter è già attivo allora il massimo numero di giri bonus è 7
+            se no è 12 di default
+            */
+            const MAX_giri_bonus = this._scatter ? 7 : 12;
+            const giri_bonus = random.min_max(3, MAX_giri_bonus);
             // ---
             this.giri_bonus += giri_bonus;
-            alert('Hai vinto ' + giri_bonus + ' giri bonus e il simbolo espansione è il ' + config.nomi_emoji[nuovo_simbolo_espansione]);
+            // indico che la funzione scatter è attiva
+            this._scatter = true;
+            html.scatter();
+            if (nuovo_simbolo_espansione) {
+                alert('Hai vinto ' + giri_bonus + ' giri bonus e il simbolo espansione è il ' + config.nomi_emoji[nuovo_simbolo_espansione]);
+            }
         }
-        console.log(this.giri_bonus);
     }
     calcola_vincita(g, colonna = 0) {
         // ---
@@ -99,7 +109,9 @@ class Slot {
                 index: index, // indice del simbolo che ha vinto
                 colonna: c, // fino alla colonna c
             });
-            console.log(config.nomi_emoji[index] + ": " + moltiplicatore_simbolo + " * " + (m == 0 ? 1 : m) + " * " + this.puntata);
+            // html
+            html.mostra_calcoli(config.nomi_emoji[index] + ": " + vincita_linea.toFixed(2) + '€ = ' + moltiplicatore_simbolo + " * " + (m == 0 ? 1 : m) + " * " + this.puntata);
+            // ---
             // restituisco la vincita
             return vincita_linea;
         } else {

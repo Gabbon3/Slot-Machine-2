@@ -3,15 +3,27 @@ cd css
 sass --watch main.scss:main.css
 */
 :root {
-  --bc: #222;
+  --bc: #151515;
+  --color: #fff;
+  --bc-finestra: rgba(17, 17, 17, 0.8);
+  --font-family: "Courier New", Courier, monospace;
+  --p-font-size: 22px;
 }
 
+@font-face {
+  font-family: "Kamikaze";
+  src: url("../font/Kamikaze.woff") format("woff"); /* Specifica il percorso del file WOFF */
+  font-weight: normale; /* Peso del font */
+  font-style: normale; /* Stile del font */
+}
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  color: var(--color);
+  font-family: var(--font-family);
 }
 
 #slot {
@@ -34,6 +46,12 @@ html {
   width: 480px;
   height: 560px;
   font-family: "Kamikaze";
+  --c: #111;
+  --s: 30px;
+  --_s: calc(2*var(--s)) calc(2*var(--s));
+  --_g: 35.36% 35.36% at;
+  --_c: #0000 66%, #444 68% 70%, #0000 72%;
+  background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s), repeating-conic-gradient(var(--c) 0 25%, rgba(0, 0, 0, 0) 0 50%) 0 0/var(--_s), radial-gradient(var(--_c)) 0 calc(var(--s) / 2)/var(--s) var(--s) var(--c);
 }
 #display .col {
   width: 16.6666666667%;
@@ -67,34 +85,35 @@ html {
   text-align: center;
   width: 90%;
   aspect-ratio: 1/1;
+  z-index: 5;
 }
 
 .motif {
   transition: 0.25s;
-  --s: 17px;
-  --_s: calc(2*var(--s)) calc(2*var(--s));
-  --_g: 35.36% 35.36% at;
-  background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s), repeating-conic-gradient(var(--c) 0 25%, rgba(0, 0, 0, 0) 0 50%) 0 0/var(--_s), radial-gradient(var(--_c)) 0 calc(var(--s) / 2)/var(--s) var(--s) var(--c);
+  --opacacita: 0.7;
+  background-color: var(--c);
 }
 .motif.base {
-  --c: #5c1b1e;
-  --_c: #0000 66%, #912228 68% 70%, #0000 72%;
+  --c: rgba(92, 27, 30, var(--opacacita));
+  --w: rgb(92, 27, 30);
 }
 .motif.green {
-  --c: #2E5624;
-  --_c: #0000 66%, #3e8a2b 68% 70%, #0000 72%;
+  --c: rgba(46, 86, 36, var(--opacacita));
+  --w: rgb(46, 86, 36);
 }
 .motif.blue {
-  --c: #274D7C;
-  --_c: #0000 66%, #3970b4 68% 70%, #0000 72%;
+  --c: rgba(39, 77, 124, var(--opacacita));
+  --w: rgb(39, 77, 124);
 }
 .motif.purple {
-  --c: #5D2771;
-  --_c: #0000 66%, #8938a7 68% 70%, #0000 72%;
+  --c: rgba(93, 39, 113, var(--opacacita));
+  --w: rgb(93, 39, 113);
 }
 .motif.gold, .motif.win {
-  --c: rgb(189, 140, 17);
-  --_c: #0000 66%, goldenrod 68% 70%, #0000 72%;
+  --c: rgba(189, 140, 17, 0.4);
+}
+.motif.gold {
+  --w: rgb(255, 242, 0);
 }
 .motif.win {
   position: relative;
@@ -104,9 +123,9 @@ html {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(100% - 10px);
-  height: calc(100% - 10px);
-  border: 2px solid rgb(255, 242, 0);
+  width: calc(100% - 15px);
+  height: calc(100% - 15px);
+  box-shadow: 0 0 0 1px gold, 0 0 0 4px var(--w), 0 0 0 5px gold;
   transform: translate(-50%, -50%);
   border-radius: 3px;
 }
@@ -114,22 +133,188 @@ html {
 #vincita {
   display: none;
   position: fixed;
-  bottom: 10%;
+  top: 15%;
   left: 50%;
   transform: translateX(-50%);
-  font-family: "Kamikaze", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: "Kamikaze";
   color: gold;
   -webkit-text-stroke: 3px #111;
   font-size: 70px;
+  z-index: 6;
+}
+#vincita b {
+  font-family: monospace;
 }
 
-.supporto {
-  width: 16.666%;
-  transform: translateX(-100%);
+#controller {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: 98%;
+  z-index: 7;
+}
+#controller #spin {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 60px;
+  padding: 0;
+  opacity: 0.5;
+}
+#controller #spin:hover {
+  opacity: 1;
+  background-color: transparent;
+}
+
+#wallet {
+  font-weight: bold;
+  font-size: 35px;
+  -webkit-text-stroke: 1px #111;
+  letter-spacing: -3px;
+  padding: 10px;
+}
+#wallet:hover {
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+.finestra {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 95vh;
+  max-width: 95vw;
+  min-width: 75vw;
+  min-height: 50vh;
+  overflow-y: scroll;
+  z-index: 7;
+}
+
+#bc_finestre {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(34, 34, 34, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 5px;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 27px;
+}
+
+p {
+  font-size: var(--p-font-size);
+  line-height: 1.5;
+}
+
+.btn {
+  --bc-btn: #252525;
+  background-color: var(--bc-btn);
+  color: var(--color);
+  font-size: var(--p-font-size);
+  border: none;
+  border-radius: 10px;
+  padding: 20px 25px;
+  cursor: pointer;
+  font-family: var(--font-family);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn:hover {
+  background-color: #333;
+}
+.btn.trasparente {
+  background-color: transparent;
+}
+.btn.trasparente:hover {
+  background-color: rgba(51, 51, 51, 0.4);
+}
+.btn.danger {
+  background-color: #ab2f2f;
+}
+.btn.circle {
+  padding: 15px;
+  border-radius: 50%;
+}
+.btn.disabled {
+  cursor: default;
+}
+.btn.disabled:hover {
+  background-color: var(--bc-btn);
+}
+
+.btn-group {
+  margin: 10px 0;
+  display: flex;
+  gap: 5px;
+}
+
+.btn-sequence {
+  display: inline-flex;
+}
+.btn-sequence .btn {
+  border-radius: 0;
+  border-right: 1px solid #444;
+}
+.btn-sequence .btn:first-of-type {
+  border-radius: 10px 0 0 10px;
+}
+.btn-sequence .btn:last-of-type {
+  border-radius: 0 10px 10px 0;
+  border: none;
+}
+
+.input {
+  background-color: rgba(51, 51, 51, 0.4);
+  color: var(--color);
+  padding: 10px 5px;
+  border: 1px solid #444;
+  border-radius: 5px;
+  font-size: var(--p-font-size);
+}
+
+.glass {
+  background-color: var(--bc-finestra);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+table {
+  text-align: left;
+  font-size: var(--p-font-size);
+  width: 100%;
+  border: 1px solid #444;
+}
+table th, table td {
+  padding: 5px;
+  border: 1px solid #444;
 }
 
 /*# sourceMappingURL=main.css.map */
