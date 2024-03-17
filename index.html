@@ -33,7 +33,7 @@
         <div id="controller">
             <div class="btn-sequence">
                 <!-- <span class="btn trasparente disabled">Giri bonus: <b id="html_giri_bonus">0</b></span> -->
-                <button class="btn open" data-target="finestra_utente"><i class="fa-regular fa-user"></i></button>
+                <button class="btn open" data-target="finestra_impostazioni"><i class="fa-solid fa-gear"></i></button>
                 <button class="btn open" data-target="finestra_calcoli"><i class="fa-solid fa-calculator"></i></button>
                 <button class="btn open" data-target="finestra_puntata"><i class="fa-solid fa-money-bill-1-wave"></i></button>
                 <button class="btn open" data-target="finestra_informazioni"><i class="fa-solid fa-info"></i></button>
@@ -87,10 +87,19 @@
             </tbody>
         </table>
     </div>
-    <!-- utente -->
-    <div class="finestra glass" id="finestra_utente">
-        <button class="btn close" data-target="finestra_utente">X</button>
-        <h2>Utente</h2>
+    <!-- impostazioni -->
+    <div class="finestra glass" id="finestra_impostazioni">
+        <button class="btn close" data-target="finestra_impostazioni">X</button>
+        <h2>Impostazioni</h2>
+        <hr>
+        <h3>Velocita Gioco</h3>
+        <select class="input" name="velocita_slot" id="velocita_slot">
+            <option value="7">Molto Lento</option>
+            <option value="6">Lento</option>
+            <option value="5" selected>Normale</option>
+            <option value="4">Veloce</option>
+            <option value="3">Molto Veloce</option>
+        </select>
         <hr>
         <h3>Ricomincia</h3>
         <p>

@@ -1,6 +1,7 @@
 class Animazione {
     constructor() {
         this.is_shuffle = false;
+        this.velocita_animazione = 500; //
     }
     shuffle() {
         if (this.is_shuffle) return;
@@ -9,7 +10,7 @@ class Animazione {
         const colonne = geta('.col');
         let k = 0;
         for (let i = 0; i < config.colonne; i++) {
-            this.anima_colonna(colonne[i], i, 500, k);
+            this.anima_colonna(colonne[i], i, this.velocita_animazione, k);
             k++;
         }
     }
@@ -83,10 +84,10 @@ class Animazione {
             new_span.style.top = '-100%';
             colonna.appendChild(new_span);
             $(new_span).animate({
-                top: '30px'
+                top: animazione.velocita_animazione > 500 ? '15px' : '30px'
             }, {
                 duration: (timeout * 0.5),
-                easing: 'swing',
+                easing: animazione.velocita_animazione > 500 ? 'linear' : 'swing',
                 complete: () => {
                     $(new_span).animate({
                         top: 0

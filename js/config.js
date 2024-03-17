@@ -36,7 +36,7 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            5, // 0
+            5.5, // 0
             15, // 1
             18, // 2
             21, // 3
