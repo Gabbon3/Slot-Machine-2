@@ -7,7 +7,8 @@ class Local {
             this.set('GiapanSlot-wallet', utente.wallet);
         } else {
             utente.wallet = parseFloat(wallet);
-        } 
+        }
+        utente.html_wallet();
     }
 
     get(item) {
