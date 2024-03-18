@@ -26,15 +26,15 @@ class Items {
      * gestisce l'intero processo di restituzione degli elementi
      * @param {Number} indice crea una griglia di un singolo simbolo **sperimentale
      */
-    set_griglia(indice = null) {
+    set_griglia(is_init = false) {
         // inizializzo
-        this.griglia = this._init_griglia();
+        this.griglia = this._init_griglia(is_init);
         this.n_scatter = 0;
         // ----
         for (let c = 0; c < config.colonne; c++) {
             let numero_righe = this.griglia[c].length;
             for (let r = 0; r < numero_righe; r++) {
-                const nuovo_simbolo = this.inizializza_nuovo_simbolo(c, r, indice)
+                const nuovo_simbolo = this.inizializza_nuovo_simbolo(c, r)
                 this.griglia[c][r] = nuovo_simbolo;
                 this.griglia_indici[c][r] = nuovo_simbolo.index;
                 if (this.griglia_indici[c][r] == config.i_scatter) {
@@ -47,12 +47,17 @@ class Items {
      * restituisce l'array della griglia
      * @returns {Array} griglia
      */
-    _init_griglia() {
+    _init_griglia(is_init = false) {
         let matrice = [];
         this.griglia_indici = [];
         // per ogni colonna
+        let simboli_per_riga = [2, 3, 4, 5, 6, 7];
+        if (!is_init) {
+            simboli_per_riga.sort(() => Math.random() - 0.5);
+        }
+        // ---
         for (let c = 0; c < config.colonne; c++) {
-            let numero_righe = random.min_max(2, config.righe);
+            let numero_righe = simboli_per_riga.shift();
             let colonna_matrice = [];
             // per ogni riga
             for (let r = 0; r < numero_righe; r++) {

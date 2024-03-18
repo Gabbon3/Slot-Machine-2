@@ -1,6 +1,6 @@
 class HTML {
     constructor() {
-        this.items = items._init_griglia();
+        this.items = items._init_griglia(true);
     }
     /**
      * inizializza l'html della pagina
@@ -8,7 +8,7 @@ class HTML {
     init(griglia) {
         let txt = '';
         if (!griglia) {
-            items.set_griglia();
+            items.set_griglia(true);
             griglia = items.griglia_indici;
         }
         // ----
@@ -88,9 +88,9 @@ class HTML {
     /**
      * 
      */
-    spin(puntata) {
+    spin() {
         get1('#calcoli_demo').innerHTML = '';
-        const vincita = slot.spin(puntata);
+        const vincita = slot.spin();
     }
 }
 

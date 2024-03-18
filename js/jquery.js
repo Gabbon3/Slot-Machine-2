@@ -16,26 +16,23 @@ $(document).ready(() => {
     $('#vincita').click(() => {
         $('#vincita').hide();
     });
-    // btn open and close
+    // finestre
     $(document).on('click', '.close', (btn) => {
         btn = btn.currentTarget;
         const target = $(btn).attr('data-target');
-        $('#' + target).fadeOut(100);
-        $('#bc_finestre').fadeOut(100);
+        finestra.close(target);
     });
     $(document).on('click', '.open', (btn) => {
         btn = btn.currentTarget;
         const target = $(btn).attr('data-target');
-        $('#' + target).fadeIn(100);
-        $('#bc_finestre').attr('data-target', target);
-        $('#bc_finestre').fadeIn(100);
+        finestra.open(target);
     });
     $('#bc_finestre').click((bc) => {
         bc = bc.currentTarget;
         const target = $(bc).attr('data-target');
-        $('#' + target).fadeOut(100);
-        $(bc).fadeOut(100);
+        finestra.close(target);
     });
+    // ---
     // utente
     $('#reset_game').click(() => {
         utente.reset();
@@ -45,13 +42,41 @@ $(document).ready(() => {
         option = option.currentTarget;
         animazione.velocita_animazione = Number($(option).val()) * 100;
     });
+    // puntata
+    $(document).on('change', '#puntata', (puntata) => {
+        puntata = parseFloat($(puntata.currentTarget).val());
+        slot.puntata = puntata;
+        // --- pay for: funzione bonus
+        slot.prezzo_funzione_bonus = slot.puntata * 120;
+        $('#prezzo_funzione_bonus').text(slot.prezzo_funzione_bonus.toFixed(2));
+    });
+    // compra funzione bonus
+    $('#compra_funzione_bonus').click(() => {
+        const conferma = confirm('Sicuro di voler procedere all\'acquisto della funzione bonus per ' + slot.prezzo_funzione_bonus + '€?');
+        if (conferma) {
+            finestra.close('finestra_puntata');
+            utente.compra_funzione_bonus();
+        }
+    });
 });
+
+const finestra = {
+    open(target) {
+        $('#' + target).fadeIn(100);
+        $('#bc_finestre').attr('data-target', target);
+        $('#bc_finestre').fadeIn(100);
+    },
+    close(target) {
+        $('#' + target).fadeOut(100);
+        $('#bc_finestre').fadeOut(100);
+    }
+}
 
 function spin_game() {
     const puntata = parseFloat($('#puntata').val());
     const procedi = utente.spin(puntata);
     if (animazione.is_shuffle || !procedi) return;
-    html.spin(puntata);
+    html.spin();
 }
 
 function adatta_display() {

@@ -5,7 +5,8 @@ class Slot {
         this.giri_bonus = 0;
         this.simboli_vincenti = [];
         this.vincita_giro = 0;
-        this.puntata = 0;
+        this.puntata = 1.00;
+        this.prezzo_funzione_bonus = this.puntata * 120;
     }
     init() {
         const l = config.n_emoji;
@@ -16,9 +17,7 @@ class Slot {
      * esegue l'azione di spin della macchina
      * @returns {Array} array degli elementi del rullo
      */
-    spin(puntata) {
-        // ---
-        this.puntata = puntata;
+    spin() {
         // animazione
         items.set_griglia();
         animazione.shuffle();
