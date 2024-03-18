@@ -48,7 +48,7 @@ $(document).ready(() => {
         puntata = parseFloat($(puntata.currentTarget).val());
         slot.puntata = puntata;
         // --- pay for: funzione bonus
-        slot.prezzo_funzione_bonus = slot.puntata * 120;
+        slot.prezzo_funzione_bonus = slot.puntata * config.moltiplicatore_acquista_bonus;
         $('#prezzo_funzione_bonus').text(slot.prezzo_funzione_bonus.toFixed(2));
     });
     // compra funzione bonus
@@ -63,13 +63,13 @@ $(document).ready(() => {
 
 const finestra = {
     open(target) {
-        $('#' + target).fadeIn(150);
+        dom.show('#' + target)
         $('#bc_finestre').attr('data-target', target);
-        $('#bc_finestre').fadeIn(150);
+        dom.show('#bc_finestre')
     },
     close(target) {
-        $('#' + target).fadeOut(150);
-        $('#bc_finestre').fadeOut(150);
+        dom.hide('#' + target)
+        dom.hide('#bc_finestre')
     }
 }
 

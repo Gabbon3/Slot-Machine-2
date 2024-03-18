@@ -6,6 +6,7 @@ class Config {
         this.i_wild = 0; // indice del wild
         this.i_scatter = 0; // indice dello scatter
         this.default_wallet = 5000;
+        this.moltiplicatore_acquista_bonus = 150;
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
             '<img src="./img/katana.png"></img>', // 1
@@ -37,18 +38,18 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            2, // 0
-            6, // 1
-            9, // 2
-            11, // 3
-            13, // 4
-            15, // 5
-            17, // 6
-            18, // 7
-            19, // 8
-            20, // 9
-            20, // 10
-            20, // 11
+            1.75, // 0
+            7, // 1
+            8.5, // 2
+            10, // 3
+            11.5, // 4
+            13, // 5
+            14.5, // 6
+            15, // 7
+            15.5, // 8
+            16, // 9
+            16, // 10
+            16, // 11
         ];
         this.moltiplicatori = [
             [5.0], // 0
