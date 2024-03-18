@@ -178,6 +178,7 @@ class Animazione {
             html.mostra_calcoli(' = <b>' + slot.vincita_giro.toFixed(2) + '€</b>');
             animazione.is_shuffle = false;
             slot.giri_bonus--;
+            $('#giri_bonus').text(slot.giri_bonus);
             // disattivo la funzione scatter
             if (slot.giri_bonus == 0) {
                 slot._scatter = false;
@@ -198,6 +199,44 @@ class Animazione {
                     $(`#cr${c}${r}`).html(html.items_to_emoji(items.griglia_indici[c][r]));
                 }
             }, 0, (items.griglia_indici[c].length - 1), 20);
+        }
+    }
+    /**
+     * gestisce l'animazione per i giri bonus
+     * @param {Int} simbolo_espansione 
+     * @param {Int} giri_bonus 
+     */
+    attivazione_scatter(simbolo_espansione, giri_bonus, max_giri) {
+        $('#scatter_container').fadeIn(100);
+        this.for_interval((i) => {
+            // ---
+            result();
+            // ---
+        }, 0, 20, 100, () => {
+            let timeout = 100;
+            animazione.for_interval((j) => {
+                // ---
+                result();
+                // ---
+                timeout += 50;
+            }, 0, 5, timeout, () => {
+                // stampa finale
+                result(simbolo_espansione, giri_bonus);
+            });
+        });
+        function result(simbolo, giri) {
+            if (!simbolo) {
+                simbolo = config.emoji[random.min_max(1, config.n_emoji - 1)];
+                giri = random.min_max(2, max_giri);
+            } else {
+                simbolo = config.emoji[simbolo];
+            }
+            // ---
+            $('#simbolo_espansione_scatter').html(simbolo);
+            $('#numero_giri').text(giri);
+            setTimeout(() => {
+                $('#scatter_container').fadeOut(100);
+            }, 5000);
         }
     }
     /**

@@ -143,8 +143,13 @@
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    flex-direction: column;
     width: 98%;
     z-index: 7;
+
+    #saldo {
+        display: flex;
+    }
 
     #spin {
         position: fixed;
@@ -158,18 +163,63 @@
             opacity: 1;
             background-color: transparent;
         }
+
+        #giri_bonus {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 25px;
+            font-weight: bold;
+        }
     }
 }
-
+ 
 #wallet {
     font-weight: bold;
-    font-size: 35px;
-    -webkit-text-stroke: 1px #111;
-    letter-spacing: -3px;
+    font-size: var(--p-font-size);
     padding: 10px;
 
     &:hover {
         background-color: transparent;
+    }
+}
+
+#scatter_container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-image: url('../img/yin_yang.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80%;
+    height: 100%;
+    display: none;
+    
+    #simbolo_espansione_scatter, #numero_giri {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #simbolo_espansione_scatter {
+        left: 22%;
+        
+        img {
+            width: 12vw;
+        }
+    }
+
+    #numero_giri {
+        right: 22%;
+        font-size: 12vw;
+        font-family: 'Kamikaze';
+        -webkit-text-stroke: 2px goldenrod;
+        color:rgb(92, 27, 30);
     }
 }
 

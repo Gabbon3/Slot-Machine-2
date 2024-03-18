@@ -31,17 +31,27 @@
             <!-- generazione dinamica -->
         </div>
         <div id="controller">
+            <div id="saldo">
+                <span class="btn trasparente disabled" id="wallet">5000.00€</span>
+            </div>
             <div class="btn-sequence">
                 <!-- <span class="btn trasparente disabled">Giri bonus: <b id="html_giri_bonus">0</b></span> -->
-                <button class="btn open" data-target="finestra_impostazioni"><i class="fa-solid fa-gear"></i></button>
-                <button class="btn open" data-target="finestra_calcoli"><i class="fa-solid fa-calculator"></i></button>
-                <button class="btn open" data-target="finestra_puntata"><i class="fa-solid fa-money-bill-1-wave"></i></button>
-                <button class="btn open" data-target="finestra_informazioni"><i class="fa-solid fa-info"></i></button>
+                <button title="Impostazioni" class="btn open" data-target="finestra_impostazioni"><i class="fa-solid fa-gear"></i></button>
+                <button title="Puntata" class="btn open" data-target="finestra_puntata"><i class="fa-solid fa-money-bill-1-wave"></i></button>
+                <button title="Informazioni" class="btn open" data-target="finestra_informazioni"><i class="fa-solid fa-info"></i></button>
             </div>
-            <span class="btn trasparente disabled" id="wallet">5000.00€</span>
-            <button class="btn trasparente circle" id="spin"><i class="fa-solid fa-play"></i></button>
+            <button class="btn trasparente" id="spin">
+                <i class="fa-solid fa-play"></i>
+                <span id="giri_bonus">0</span>
+            </button>
         </div>
         <span id="vincita">0.00</span>
+        <div id="scatter_container">
+            <span id="simbolo_espansione_scatter">
+                <img src="./img/card_a.png">
+            </span>
+            <span id="numero_giri">12</span>
+        </div>
     </div>
     <!-- finestre -->
     <!-- puntata -->
@@ -53,22 +63,21 @@
             Seleziona dal menu la puntata €:
         </p>
         <select class="input" name="puntata" id="puntata">
-            <option value="0.50">0.50</option>
-            <option value="1.00" selected>1.00</option>
-            <option value="2.50">2.50</option>
-            <option value="5.00">5.00</option>
-            <option value="10.00">10.00</option>
-            <option value="20.00">20.00</option>
-            <option value="50.00">50.00</option>
-            <option value="75.00">75.00</option>
-            <option value="100.00">100.00</option>
+            <option value="0.50">0.50€</option>
+            <option value="1.00" selected>1.00€</option>
+            <option value="2.50">2.50€</option>
+            <option value="5.00">5.00€</option>
+            <option value="10.00">10.00€</option>
+            <option value="20.00">20.00€</option>
+            <option value="50.00">50.00€</option>
+            <option value="75.00">75.00€</option>
+            <option value="100.00">100.00€</option>
         </select>
-    </div>
-    <!-- calcoli -->
-    <div class="finestra glass" id="finestra_calcoli">
-        <button class="btn close" data-target="finestra_calcoli">X</button>
-        <h2>Calcoli</h2>
+        <h2>Guadagno Giro</h2>
         <hr>
+        <p>
+            Visualizza qui sotto in che modo il software calcola le vincite:
+        </p>
         <p id="calcoli_demo"></p>
     </div>
     <!-- informazioni -->
@@ -103,10 +112,10 @@
             <option value="4">Veloce</option>
             <option value="3">Molto Veloce</option>
         </select>
-        <hr>
         <h3>Ricomincia</h3>
+        <hr>
         <p>
-            Ricomincia il gioco portando nuovamente il tuo wallet a 5000.00€
+            Ricomincia il gioco portando nuovamente il tuo portafoglio a 5000.00€
         </p>
         <button class="btn danger" id="reset_game">Reset</button>
     </div>

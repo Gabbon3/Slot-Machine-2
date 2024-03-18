@@ -20,12 +20,12 @@ class Config {
             '<img src="./img/card_9.png"></img>', // 11
         ];
         this.nomi_emoji = [
-            '🐼',
-            '⚔️',
-            '🪴',
-            '⛩️',
-            '🍣',
-            '🎍',
+            'Panda',
+            'Katana',
+            'Bonsai',
+            'Torii',
+            'Sushi',
+            'Bamboo',
             'A',
             'K',
             'Q',
@@ -36,18 +36,18 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            5.5, // 0
-            15, // 1
-            18, // 2
-            21, // 3
-            24, // 4
-            27, // 5
-            35, // 6
-            37, // 7
-            39, // 8
-            42, // 9
-            42, // 10
-            42, // 11
+            2, // 0
+            5, // 1
+            9, // 2
+            11, // 3
+            13, // 4
+            15, // 5
+            17, // 6
+            18, // 7
+            19, // 8
+            20, // 9
+            20, // 10
+            20, // 11
         ];
         this.moltiplicatori = [
             [10.0], // 0

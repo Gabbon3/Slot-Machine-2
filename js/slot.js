@@ -53,9 +53,9 @@ class Slot {
             // indico che la funzione scatter è attiva
             this._scatter = true;
             html.scatter();
-            if (nuovo_simbolo_espansione) {
-                alert('Hai vinto ' + giri_bonus + ' giri bonus e il simbolo espansione è il ' + config.nomi_emoji[nuovo_simbolo_espansione]);
-            }
+            // animazione
+            alert('Complimenti! Hai attivato la funzione bonus! Clicca ok per continuare.');
+            animazione.attivazione_scatter(nuovo_simbolo_espansione, giri_bonus, MAX_giri_bonus);
         }
     }
     calcola_vincita(g, colonna = 0) {
@@ -81,7 +81,7 @@ class Slot {
      */
     calcola_vincita_linea(index, griglia) {
         // ---
-        let m = 0;
+        let m = 1;
         const g = griglia;
         const n_colonne = griglia.length;
         let c = 0;
@@ -90,7 +90,8 @@ class Slot {
             // quante volte è presente il simbolo nella colonna successiva
             const occorrenze = this.conta_occorrenze(g[c], index);
             if (occorrenze > 0) {
-                m += occorrenze > 1 ? occorrenze : 0;
+                // m += occorrenze > 1 ? occorrenze : 0;
+                m *= occorrenze;
             } else {
                 break;
             }

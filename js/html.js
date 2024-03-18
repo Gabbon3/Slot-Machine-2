@@ -77,12 +77,12 @@ class HTML {
     }
     scatter() {
         $('#puntata').prop('disabled', slot._scatter);
-        $('#html_giri_bonus').text(slot.giri_bonus);
+        $('#giri_bonus').text(slot.giri_bonus);
         // se scatter attivo
         if (slot._scatter) {
-
+            $('#giri_bonus').show();
         } else {
-
+            $('#giri_bonus').hide();
         }
     }
     /**
