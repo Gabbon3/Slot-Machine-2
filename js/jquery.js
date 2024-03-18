@@ -1,5 +1,6 @@
 $(document).ready(() => {
     adatta_display();
+    local.init();
     $('#spin').click(() => {
         spin_game();
     });
@@ -62,13 +63,13 @@ $(document).ready(() => {
 
 const finestra = {
     open(target) {
-        $('#' + target).fadeIn(100);
+        $('#' + target).fadeIn(150);
         $('#bc_finestre').attr('data-target', target);
-        $('#bc_finestre').fadeIn(100);
+        $('#bc_finestre').fadeIn(150);
     },
     close(target) {
-        $('#' + target).fadeOut(100);
-        $('#bc_finestre').fadeOut(100);
+        $('#' + target).fadeOut(150);
+        $('#bc_finestre').fadeOut(150);
     }
 }
 

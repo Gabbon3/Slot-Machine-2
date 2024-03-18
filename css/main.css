@@ -363,6 +363,7 @@ p {
   border: 1px solid #444;
   border-radius: 5px;
   font-size: var(--p-font-size);
+  font-family: var(--font-family);
 }
 
 .glass {

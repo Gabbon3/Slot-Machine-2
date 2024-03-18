@@ -39,8 +39,8 @@ class Slot {
                 while (this.simboli_espansione.includes(nuovo_simbolo_espansione)) {
                     nuovo_simbolo_espansione = random.min_max(1, config.n_emoji - 1);
                 }
+                this.simboli_espansione.push(nuovo_simbolo_espansione);
             }
-            this.simboli_espansione.push(nuovo_simbolo_espansione);
             /*
             Se lo scatter è già attivo allora il massimo numero di giri bonus è 7
             se no è 12 di default

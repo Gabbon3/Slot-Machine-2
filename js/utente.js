@@ -9,7 +9,8 @@ class Utente {
     }
 
     html_wallet() {
-        $('#wallet').html(this.wallet.toFixed(2) + '€');
+        local.set('GiapanSlot-wallet', this.wallet);
+        $('#wallet').html(html.better_value(this.wallet) + '€');
     }
 
     spin(puntata) {
@@ -20,10 +21,8 @@ class Utente {
         }
         if (!slot._scatter && !animazione.is_shuffle) {
             this.wallet -= puntata;
-            this.html_wallet();
-        } else {
-            this.html_wallet();
         }
+        this.html_wallet();
         return true;
     }
 

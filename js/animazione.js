@@ -134,7 +134,7 @@ class Animazione {
                 // verifico la presenta degli scatter
                 slot.scatter();
                 $('#vincita').show();
-                $('#vincita').html(slot.vincita_giro.toFixed(2));
+                $('#vincita').html(html.better_value(slot.vincita_giro));
                 // utente
                 utente.wallet += slot.vincita_giro;
                 utente.html_wallet();
@@ -173,7 +173,7 @@ class Animazione {
             slot.scatter();
             // ---
             $('#vincita').show();
-            $('#vincita').text(slot.vincita_giro.toFixed(2));
+            $('#vincita').text(html.better_value(slot.vincita_giro));
             // utente
             utente.wallet += slot.vincita_giro;
             utente.html_wallet();
@@ -235,7 +235,11 @@ class Animazione {
                 simbolo = config.emoji[simbolo];
             }
             // ---
-            $('#simbolo_espansione_scatter').html(simbolo);
+            if (simbolo_espansione) {
+                $('#simbolo_espansione_scatter').html(simbolo);
+            } else {
+                $('#simbolo_espansione_scatter').html('');
+            }
             $('#numero_giri').text(giri);
             setTimeout(() => {
                 $('#scatter_container').fadeOut(100);

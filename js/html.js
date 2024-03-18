@@ -100,6 +100,13 @@ class HTML {
         get1('#calcoli_demo').innerHTML = '';
         const vincita = slot.spin();
     }
+    better_value(number) {
+        number = Number(number).toFixed(2);
+        number = number.split('.');
+        number[0] = [...[...number[0]].reverse().join('').match(/.{1,3}/g).join('.')].reverse().join('');
+        // if (number.length <= 3) return number;
+        return number.join(',');
+    }
 }
 
 const html = new HTML();
