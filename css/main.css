@@ -50,7 +50,7 @@ html {
   --s: 30px;
   --_s: calc(2*var(--s)) calc(2*var(--s));
   --_g: 35.36% 35.36% at;
-  --_c: #0000 66%, #444 68% 70%, #0000 72%;
+  --_c: #0000 66%, #555 68% 70%, #0000 72%;
   background: radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s), radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s), radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s), repeating-conic-gradient(var(--c) 0 25%, rgba(0, 0, 0, 0) 0 50%) 0 0/var(--_s), radial-gradient(var(--_c)) 0 calc(var(--s) / 2)/var(--s) var(--s) var(--c);
 }
 #display .col {
@@ -58,6 +58,9 @@ html {
   transition: 0.3s;
   position: relative;
   overflow: hidden;
+}
+#display .col:last-of-type .item {
+  border-right: 1px solid goldenrod;
 }
 #display .col span {
   position: absolute;
@@ -78,8 +81,12 @@ html {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border: 0.25px solid goldenrod;
+  border-top: 1px solid goldenrod;
+  border-left: 1px solid goldenrod;
   position: relative;
+}
+#display .col .item:last-of-type {
+  border-bottom: 1px solid goldenrod;
 }
 #display .col .item img {
   text-align: center;
@@ -90,30 +97,45 @@ html {
 
 .motif {
   transition: 0.25s;
-  --opacacita: 0.7;
   background-color: var(--c);
 }
 .motif.base {
-  --c: rgba(92, 27, 30, var(--opacacita));
+  --c: rgba(92, 27, 30, 0.7);
   --w: rgb(92, 27, 30);
 }
-.motif.green {
-  --c: rgba(46, 86, 36, var(--opacacita));
+.motif.molto_comuni {
+  --c: rgba(92, 27, 30, 0.7);
+  --w: teal;
+}
+.motif.comuni {
+  --c: rgba(92, 27, 30, 0.7);
+  --w: brown;
+}
+.motif.sushi {
+  --c: rgba(220, 69, 19, 0.45);
+  --w: rgb(220, 69, 19);
+}
+.motif.bamboo {
+  --c: rgba(46, 86, 36, 0.6);
   --w: rgb(46, 86, 36);
 }
-.motif.blue {
-  --c: rgba(39, 77, 124, var(--opacacita));
-  --w: rgb(39, 77, 124);
+.motif.ventaglio {
+  --c: rgba(225, 28, 56, 0.4);
+  --w: rgb(225, 28, 56);
 }
-.motif.purple {
-  --c: rgba(93, 39, 113, var(--opacacita));
-  --w: rgb(93, 39, 113);
+.motif.lanterna {
+  --c: rgba(60, 48, 42, 0.7);
+  --w: rgb(60, 48, 42);
+}
+.motif.katana {
+  --c: rgba(75, 0, 130, 0.6);
+  --w: rgb(75, 0, 130);
 }
 .motif.gold, .motif.win {
   --c: rgba(189, 140, 17, 0.4);
 }
 .motif.gold {
-  --w: rgb(255, 242, 0);
+  --w: goldenrod;
 }
 .motif.win {
   position: relative;
@@ -125,7 +147,7 @@ html {
   left: 50%;
   width: calc(100% - 15px);
   height: calc(100% - 15px);
-  box-shadow: 0 0 0 1px gold, 0 0 0 4px var(--w), 0 0 0 5px gold;
+  box-shadow: 0 0 0 1px gold, 0 0 0 15px var(--w);
   transform: translate(-50%, -50%);
   border-radius: 3px;
 }
@@ -234,10 +256,10 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-height: 95vh;
-  max-width: 95vw;
-  min-width: 75vw;
-  min-height: 50vh;
+  max-height: 95%;
+  max-width: 95%;
+  min-width: 75%;
+  min-height: 50%;
   overflow-y: scroll;
   z-index: 7;
 }

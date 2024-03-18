@@ -63,12 +63,20 @@ class HTML {
         let classe = 'base';
         if (slot.simboli_espansione.includes(index) || index == 0) {
             classe = 'gold'
-        } else if (index == 4 || index == 5) {
-            classe = 'green'
-        } else if (index == 2 || index == 3) {
-            classe = 'blue'
+        } else if ([11, 10, 9].includes(index)) {
+            classe = 'molto_comuni'
+        } else if ([8, 7, 6].includes(index)) {
+            classe = 'comuni'
+        } else if (index == 4) {
+            classe = 'sushi'
+        } else if (index == 5) {
+            classe = 'bamboo'
+        } else if (index == 2) {
+            classe = 'lanterna'
+        } else if (index == 3) {
+            classe = 'ventaglio'
         } else if (index == 1) {
-            classe = 'purple'
+            classe = 'katana'
         }
         return classe;
     }

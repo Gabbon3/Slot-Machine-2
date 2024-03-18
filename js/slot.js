@@ -1,6 +1,6 @@
 class Slot {
     constructor() {
-        this._scatter = false; // flag per memorizzare se la funzione scatter è attiva o menoù
+        this._scatter = false; // flag per memorizzare se la funzione scatter è attiva o menù
         this.simboli_espansione = [];
         this.giri_bonus = 0;
         this.simboli_vincenti = [];

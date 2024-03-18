@@ -1,5 +1,6 @@
 class Config {
     constructor() {
+        this.version = '1.2.0';
         this.righe = 7;
         this.colonne = 6;
         this.i_wild = 0; // indice del wild
@@ -8,8 +9,8 @@ class Config {
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
             '<img src="./img/katana.png"></img>', // 1
-            '<img src="./img/bonsai.png"></img>', // 2
-            '<img src="./img/torii.png"></img>', // 3
+            '<img src="./img/lanterna.png"></img>', // 2
+            '<img src="./img/ventaglio.png"></img>', // 3
             '<img src="./img/sushi.png"></img>', // 4
             '<img src="./img/bamboo.png"></img>', // 5
             '<img src="./img/card_a.png"></img>', // 6
@@ -22,8 +23,8 @@ class Config {
         this.nomi_emoji = [
             'Panda',
             'Katana',
-            'Bonsai',
-            'Torii',
+            'Lanterna',
+            'Ventaglio',
             'Sushi',
             'Bamboo',
             'A',

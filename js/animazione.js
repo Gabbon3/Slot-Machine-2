@@ -84,7 +84,7 @@ class Animazione {
             new_span.style.top = '-100%';
             colonna.appendChild(new_span);
             $(new_span).animate({
-                top: animazione.velocita_animazione > 500 ? '15px' : '30px'
+                top: animazione.velocita_animazione > 500 ? '15px' : '20px'
             }, {
                 duration: (timeout * 0.5),
                 easing: animazione.velocita_animazione > 500 ? 'linear' : 'swing',
@@ -95,8 +95,6 @@ class Animazione {
                     // se ultima colonna
                     if (indice_colonna == (config.colonne - 1)) {
                         animazione.mostra_vincita();
-                        // verifico se ci sono scatter
-                        slot.scatter();
                     }
                 }
             });
@@ -133,6 +131,8 @@ class Animazione {
             if (slot.simboli_espansione.length > 0) {
                 animazione.simboli_espansione();
             } else {
+                // verifico la presenta degli scatter
+                slot.scatter();
                 $('#vincita').show();
                 $('#vincita').html(slot.vincita_giro.toFixed(2));
                 // utente
@@ -169,6 +169,9 @@ class Animazione {
                 animazione.espandi_griglia(g, simbolo_espansione);
             }
         }, 0, (slot.simboli_espansione.length - 1), 650, () => {
+            // verifico la presenta degli scatter
+            slot.scatter();
+            // ---
             $('#vincita').show();
             $('#vincita').text(slot.vincita_giro.toFixed(2));
             // utente
@@ -213,12 +216,12 @@ class Animazione {
             result();
             // ---
         }, 0, 20, 100, () => {
-            let timeout = 100;
+            let timeout = 200;
             animazione.for_interval((j) => {
                 // ---
                 result();
                 // ---
-                timeout += 50;
+                timeout += 200;
             }, 0, 5, timeout, () => {
                 // stampa finale
                 result(simbolo_espansione, giri_bonus);

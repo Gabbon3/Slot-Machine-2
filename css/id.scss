@@ -14,7 +14,7 @@
     --s: 30px;
     --_s: calc(2*var(--s)) calc(2*var(--s));
     --_g: 35.36% 35.36% at;
-    --_c: #0000 66%, #444 68% 70%, #0000 72%;
+    --_c: #0000 66%, #555 68% 70%, #0000 72%;
 
     background:
         radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
@@ -29,6 +29,12 @@
         transition: 0.3s;
         position: relative;
         overflow: hidden;
+        
+        &:last-of-type {
+            .item {
+                border-right: 1px solid goldenrod;
+            }
+        }
 
         span {
             position: absolute;
@@ -38,6 +44,7 @@
             flex-wrap: wrap;
             height: 100%;
         }
+
 
         .item {
             flex-grow: 1;
@@ -52,8 +59,14 @@
             justify-content: center;
             align-items: center;
             // background-color: #5c1b1e;
-            border: 0.25px solid goldenrod;
+            border-top: 1px solid goldenrod;
+            border-left: 1px solid goldenrod;
+            // border-top: 1px solid goldenrod;
             position: relative;
+
+            &:last-of-type {
+                border-bottom: 1px solid goldenrod;
+            }
             
             img {
                 text-align: center;
@@ -67,26 +80,45 @@
 
 .motif {
     transition: 0.25s;
-    --opacacita: 0.7;
     
     &.base {
-        --c: rgba(92, 27, 30, var(--opacacita));
+        --c: rgba(92, 27, 30, 0.7);
         --w: rgb(92, 27, 30);
     }
 
-    &.green {
-        --c: rgba(46, 86, 36, var(--opacacita));
+    &.molto_comuni {
+        --c: rgba(92, 27, 30, 0.7);
+        --w: teal;
+    }
+
+    &.comuni {
+        --c: rgba(92, 27, 30, 0.7);
+        --w: brown;
+    }
+
+    &.sushi {
+        --c: rgba(220, 69, 19, 0.45);
+        --w: rgb(220, 69, 19);
+    }
+
+    &.bamboo {
+        --c: rgba(46, 86, 36, 0.6);
         --w: rgb(46, 86, 36);
     }
 
-    &.blue {
-        --c: rgba(39, 77, 124, var(--opacacita));
-        --w: rgb(39, 77, 124);
+    &.ventaglio {
+        --c: rgba(225, 28, 56, 0.4);
+        --w: rgb(225, 28, 56);
     }
 
-    &.purple {
-        --c: rgba(93, 39, 113, var(--opacacita));
-        --w: rgb(93, 39, 113);
+    &.lanterna {
+        --c: rgba(60, 48, 42, 0.7);
+        --w: rgb(60, 48, 42);
+    }
+
+    &.katana {
+        --c: rgba(75, 0, 130, 0.6);
+        --w: rgb(75, 0, 130); 
     }
 
     &.gold, &.win {
@@ -94,7 +126,7 @@
     }
 
     &.gold {
-        --w: rgb(255, 242, 0);
+        --w: goldenrod;
     }
 
     &.win {
@@ -110,8 +142,7 @@
             // border: 2px solid rgb(255, 242, 0);
             box-shadow: 
                 0 0 0 1px gold,
-                0 0 0 4px var(--w),
-                0 0 0 5px gold;
+                0 0 0 15px var(--w);
             transform: translate(-50%, -50%);
             border-radius: 3px;
         }
