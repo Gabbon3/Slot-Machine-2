@@ -11,7 +11,7 @@ class Local {
     }
 
     get(item) {
-        localStorage.getItem(item);
+        return localStorage.getItem(item);
     }
 
     set(item, value) {
