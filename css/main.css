@@ -173,11 +173,8 @@ html {
 }
 #controller #spin #giri_bonus {
   display: none;
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 25px;
+  padding: 10px;
+  font-size: 30px;
   font-weight: bold;
 }
 

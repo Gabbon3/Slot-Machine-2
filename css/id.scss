@@ -166,11 +166,12 @@
 
         #giri_bonus {
             display: none;
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 25px;
+            // position: absolute;
+            // bottom: 100%;
+            // left: 50%;
+            // transform: translateX(-50%);
+            padding: 10px;
+            font-size: 30px;
             font-weight: bold;
         }
     }
