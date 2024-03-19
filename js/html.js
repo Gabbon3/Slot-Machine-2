@@ -6,6 +6,9 @@ class HTML {
      * inizializza l'html della pagina
      */
     init(griglia) {
+        $('#info_molt_acquisto_bonus').text(config.moltiplicatore_acquista_bonus);
+        $('#prezzo_funzione_bonus').text(slot.prezzo_funzione_bonus.toFixed(2));
+        // ---
         let txt = '';
         if (!griglia) {
             items.set_griglia(true);

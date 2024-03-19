@@ -80,7 +80,8 @@ class Slot {
      */
     calcola_vincita_linea(index, griglia) {
         // ---
-        let m = 1;
+        let m = 1; /* versione megaways */
+        // let m = 0; /* versione gabbone */
         const g = griglia;
         const n_colonne = griglia.length;
         let c = 0;
@@ -89,8 +90,8 @@ class Slot {
             // quante volte è presente il simbolo nella colonna successiva
             const occorrenze = this.conta_occorrenze(g[c], index);
             if (occorrenze > 0) {
-                // m += occorrenze > 1 ? occorrenze : 0;
-                m *= occorrenze;
+                // m += occorrenze > 1 ? occorrenze : 0; /* versione del gabbone */
+                m *= occorrenze; /* versione megaways */
             } else {
                 break;
             }

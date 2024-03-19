@@ -6,7 +6,7 @@ class Config {
         this.i_wild = 0; // indice del wild
         this.i_scatter = 0; // indice dello scatter
         this.default_wallet = 5000;
-        this.moltiplicatore_acquista_bonus = 180;
+        this.moltiplicatore_acquista_bonus = 200;
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
             '<img src="./img/sakura.png"></img>', // 1
@@ -38,7 +38,7 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            1.5, // 0
+            1.25, // 0
             8, // 1
             8.5, // 2
             9, // 3
@@ -51,6 +51,7 @@ class Config {
             12, // 10
             12, // 11
         ];
+        /* moltiplicatori del gabbone */
         this.moltiplicatori = [
             [5.0], // 0
             [0.5, 1.0, 1.5, 2.5, 5.0], // 1
@@ -64,11 +65,18 @@ class Config {
             [0.2, 0.4, 0.6, 1.0], // 9
             [0.2, 0.4, 0.6, 1.0], // 10
             [0.2, 0.4, 0.6, 1.0], // 11
-        ]
+        ] /**/
     }
 }
 
 const config = new Config();
+
+// for (let i = 0; i < config.moltiplicatori.length; i++) {
+//     const simbolo = config.moltiplicatori[i];
+//     for (let s = 0; s < simbolo.length; s++) {
+//         simbolo[s] = parseFloat((simbolo[s] * 0.5).toFixed(2));
+//     }
+// }
 
 /**
 
