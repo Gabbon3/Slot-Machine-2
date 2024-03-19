@@ -211,6 +211,7 @@ class Animazione {
      */
     attivazione_scatter(simbolo_espansione, giri_bonus, max_giri) {
         $('#scatter_container').fadeIn(100);
+        $('#giri_bonus').hide();
         this.for_interval((i) => {
             // ---
             result();
@@ -243,6 +244,7 @@ class Animazione {
             $('#numero_giri').text(giri);
             setTimeout(() => {
                 $('#scatter_container').fadeOut(100);
+                $('#giri_bonus').show();
             }, 5000);
         }
     }

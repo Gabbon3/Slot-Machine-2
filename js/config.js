@@ -6,10 +6,10 @@ class Config {
         this.i_wild = 0; // indice del wild
         this.i_scatter = 0; // indice dello scatter
         this.default_wallet = 5000;
-        this.moltiplicatore_acquista_bonus = 150;
+        this.moltiplicatore_acquista_bonus = 180;
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
-            '<img src="./img/katana.png"></img>', // 1
+            '<img src="./img/sakura.png"></img>', // 1
             '<img src="./img/lanterna.png"></img>', // 2
             '<img src="./img/ventaglio.png"></img>', // 3
             '<img src="./img/sushi.png"></img>', // 4
@@ -23,7 +23,7 @@ class Config {
         ];
         this.nomi_emoji = [
             'Panda',
-            'Katana',
+            'Sakura',
             'Lanterna',
             'Ventaglio',
             'Sushi',
@@ -38,18 +38,18 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            1.75, // 0
-            7, // 1
+            1.5, // 0
+            8, // 1
             8.5, // 2
-            10, // 3
-            11.5, // 4
-            13, // 5
-            14.5, // 6
-            15, // 7
-            15.5, // 8
-            16, // 9
-            16, // 10
-            16, // 11
+            9, // 3
+            9.5, // 4
+            10, // 5
+            10.5, // 6
+            11, // 7
+            11.5, // 8
+            12, // 9
+            12, // 10
+            12, // 11
         ];
         this.moltiplicatori = [
             [5.0], // 0

@@ -6,7 +6,7 @@ class Slot {
         this.simboli_vincenti = [];
         this.vincita_giro = 0;
         this.puntata = 1.00;
-        this.prezzo_funzione_bonus = this.puntata * 120;
+        this.prezzo_funzione_bonus = this.puntata * config.moltiplicatore_acquista_bonus;
     }
     init() {
         const l = config.n_emoji;
