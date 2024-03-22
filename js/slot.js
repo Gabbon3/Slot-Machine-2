@@ -4,9 +4,11 @@ class Slot {
         this.simboli_espansione = [];
         this.giri_bonus = 0;
         this.simboli_vincenti = [];
+        this.moltiplicatori_scatter = {};
         this.vincita_giro = 0;
         this.puntata = 1.00;
         this.prezzo_funzione_bonus = this.puntata * config.moltiplicatore_acquista_bonus;
+        this.copia_moltiplicatori = config.moltiplicatori.slice();
     }
     init() {
         const l = config.n_emoji;
@@ -40,6 +42,8 @@ class Slot {
                     nuovo_simbolo_espansione = random.min_max(1, config.n_emoji - 1);
                 }
                 this.simboli_espansione.push(nuovo_simbolo_espansione);
+                this.moltiplicatori_scatter[nuovo_simbolo_espansione] = 2;
+                this.moltiplica_moltiplicatori(nuovo_simbolo_espansione, 2);
             }
             /*
             Se lo scatter è già attivo allora il massimo numero di giri bonus è 7
@@ -56,6 +60,29 @@ class Slot {
             alert('Complimenti! Hai attivato la funzione bonus! Clicca ok per continuare.');
             animazione.attivazione_scatter(nuovo_simbolo_espansione, giri_bonus, MAX_giri_bonus);
         }
+        if (this._scatter) {
+            for (let i = 0; i < this.simboli_vincenti.length; i++) {
+                const simbolo = this.simboli_vincenti[i].index;
+                if (slot.simboli_espansione.includes(simbolo)) {
+                    this.moltiplicatori_scatter[simbolo]++;
+                    this.moltiplica_moltiplicatori(simbolo, this.moltiplicatori_scatter[simbolo]);
+                }
+            }
+        }
+    }
+    /**
+     * moltiplica tutti i moltiplicatori di un simbolo per 'm'
+     * @param {Int} indice_simbolo 
+     * @param {Int} m moltiplicatore 
+     */
+    moltiplica_moltiplicatori(indice_simbolo, m) {
+        const moltiplicatori = this.copia_moltiplicatori[indice_simbolo].slice();
+        const array = [];
+        for (let i = 0; i < moltiplicatori.length; i++) {
+            array.push(moltiplicatori[i] * m);
+        }
+        config.moltiplicatori[indice_simbolo] = array;
+        return moltiplicatori;
     }
     calcola_vincita(g, colonna = 0) {
         // ---
@@ -80,8 +107,8 @@ class Slot {
      */
     calcola_vincita_linea(index, griglia) {
         // ---
-        let m = 1; /* versione megaways */
-        // let m = 0; /* versione gabbone */
+        // let m = 1; /* versione megaways */
+        let m = 0; /* versione gabbone */
         const g = griglia;
         const n_colonne = griglia.length;
         let c = 0;
@@ -90,8 +117,8 @@ class Slot {
             // quante volte è presente il simbolo nella colonna successiva
             const occorrenze = this.conta_occorrenze(g[c], index);
             if (occorrenze > 0) {
-                // m += occorrenze > 1 ? occorrenze : 0; /* versione del gabbone */
-                m *= occorrenze; /* versione megaways */
+                m += occorrenze > 1 ? occorrenze : 0; /* versione del gabbone */
+                // m *= occorrenze; /* versione megaways */
             } else {
                 break;
             }

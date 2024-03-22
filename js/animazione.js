@@ -186,6 +186,8 @@ class Animazione {
             if (slot.giri_bonus == 0) {
                 slot._scatter = false;
                 slot.simboli_espansione = [];
+                slot.moltiplicatori_scatter = {};
+                config.moltiplicatori = slot.copia_moltiplicatori.slice();
             }
             html.scatter();
         });
