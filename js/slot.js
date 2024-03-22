@@ -11,6 +11,7 @@ class Slot {
         this.copia_moltiplicatori = config.moltiplicatori.slice();
     }
     init() {
+        this.init_moltiplicatori_scatter();
         const l = config.n_emoji;
         configuratore.rarita._init_manuale();
         config.rarita = math.proporzione_percentuali(config.rarita, config.rarita[l - 1], l);
@@ -33,7 +34,7 @@ class Slot {
      */
     scatter() {
         // se ci sono piu di tre scatter nel giro si attiva la funzione bonus
-        if (items.n_scatter >= 3) {
+        if (items.n_scatter >= config.n_scatter_minimi) {
             // ---
             let nuovo_simbolo_espansione = null;
             if (this.simboli_espansione.length < 4) {
@@ -43,7 +44,6 @@ class Slot {
                 }
                 this.simboli_espansione.push(nuovo_simbolo_espansione);
                 this.moltiplicatori_scatter[nuovo_simbolo_espansione] = 2;
-                this.moltiplica_moltiplicatori(nuovo_simbolo_espansione, 2);
             }
             /*
             Se lo scatter è già attivo allora il massimo numero di giri bonus è 7
@@ -64,25 +64,25 @@ class Slot {
             for (let i = 0; i < this.simboli_vincenti.length; i++) {
                 const simbolo = this.simboli_vincenti[i].index;
                 if (slot.simboli_espansione.includes(simbolo)) {
-                    this.moltiplicatori_scatter[simbolo] += 1.5;
-                    this.moltiplica_moltiplicatori(simbolo, this.moltiplicatori_scatter[simbolo]);
+                    this.moltiplicatori_scatter[simbolo] += config.k_molticatore_scatter;
                 }
             }
         }
     }
-    /**
-     * moltiplica tutti i moltiplicatori di un simbolo per 'm'
-     * @param {Int} indice_simbolo 
-     * @param {Int} m moltiplicatore 
-     */
-    moltiplica_moltiplicatori(indice_simbolo, m) {
-        const moltiplicatori = this.copia_moltiplicatori[indice_simbolo].slice();
-        const array = [];
-        for (let i = 0; i < moltiplicatori.length; i++) {
-            array.push(moltiplicatori[i] * m);
+    init_moltiplicatori_scatter() {
+        this.moltiplicatori_scatter = {};
+        for (let i = 0; i < config.n_emoji; i++) {
+            this.moltiplicatori_scatter[i] = 1;
         }
-        config.moltiplicatori[indice_simbolo] = array;
-        return moltiplicatori;
+    }
+    /**
+     * resetta le impostazioni di base al termine della funzione scatter
+     */
+    disattiva_scatter() {
+        this._scatter = false;
+        this.simboli_espansione = [];
+        this.moltiplicatori_scatter = {};
+        this.init_moltiplicatori_scatter();
     }
     calcola_vincita(g, colonna = 0) {
         // ---
@@ -129,6 +129,10 @@ class Slot {
         if (c >= elementi_minimi_simbolo) {
             const moltiplicatore_simbolo = config.moltiplicatori[index][c - elementi_minimi_simbolo];
             let vincita_linea = moltiplicatore_simbolo * this.puntata;
+            // moltiplico la vincita per il moltiplicatore scatter aggiuntivo
+            // metodo sostitutivo piu pratico al moltiplicare i moltiplicatori
+            // del simbolo (del config)
+            vincita_linea *= slot.moltiplicatori_scatter[index];
             if (m > 0) {
                 vincita_linea *= m;
             }
@@ -138,7 +142,14 @@ class Slot {
                 colonna: c, // fino alla colonna c
             });
             // html
-            html.mostra_calcoli(config.nomi_emoji[index] + ": " + vincita_linea.toFixed(2) + '€ = ' + moltiplicatore_simbolo + " * " + (m == 0 ? 1 : m) + " * " + this.puntata);
+            html.mostra_calcoli(
+                config.nomi_emoji[index] + ": " + 
+                vincita_linea.toFixed(2) + '€ = ' + 
+                moltiplicatore_simbolo + " * " + 
+                (m == 0 ? 1 : m) + " * " + 
+                slot.moltiplicatori_scatter[index] + " * " + 
+                this.puntata
+            );
             // ---
             // restituisco la vincita
             return vincita_linea;

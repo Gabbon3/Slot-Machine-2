@@ -184,10 +184,7 @@ class Animazione {
             $('#giri_bonus').text(slot.giri_bonus);
             // disattivo la funzione scatter
             if (slot.giri_bonus == 0) {
-                slot._scatter = false;
-                slot.simboli_espansione = [];
-                slot.moltiplicatori_scatter = {};
-                config.moltiplicatori = slot.copia_moltiplicatori.slice();
+                slot.disattiva_scatter();
             }
             html.scatter();
         });
