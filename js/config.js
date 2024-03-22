@@ -6,7 +6,7 @@ class Config {
         this.i_wild = 0; // indice del wild
         this.i_scatter = 0; // indice dello scatter
         this.default_wallet = 5000;
-        this.moltiplicatore_acquista_bonus = 40;
+        this.moltiplicatore_acquista_bonus = 150;
         this.emoji = [
             '<img src="./img/panda.png"></img>', // 0 - wild e scatter
             '<img src="./img/sakura.png"></img>', // 1
