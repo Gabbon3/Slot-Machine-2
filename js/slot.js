@@ -64,7 +64,7 @@ class Slot {
             for (let i = 0; i < this.simboli_vincenti.length; i++) {
                 const simbolo = this.simboli_vincenti[i].index;
                 if (slot.simboli_espansione.includes(simbolo)) {
-                    this.moltiplicatori_scatter[simbolo]++;
+                    this.moltiplicatori_scatter[simbolo] += 1.5;
                     this.moltiplica_moltiplicatori(simbolo, this.moltiplicatori_scatter[simbolo]);
                 }
             }
