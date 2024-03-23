@@ -58,7 +58,7 @@ class Items {
         // ---
         for (let c = 0; c < config.colonne; c++) {
             // let numero_righe = simboli_per_riga.shift(); /* versione megaways */
-            let numero_righe = random.min_max(2, 7); /* versione gabbone */
+            let numero_righe = random.min_max(2, 8); /* versione gabbone */
             let colonna_matrice = [];
             // per ogni riga
             for (let r = 0; r < numero_righe; r++) {

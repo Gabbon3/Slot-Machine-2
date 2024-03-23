@@ -40,7 +40,7 @@ class Config {
         this.n_emoji = this.emoji.length;
         this.max_random_number = 10000;
         this.rarita = [
-            1.5, // 0
+            1.75, // 0
             8, // 1
             8.5, // 2
             9, // 3

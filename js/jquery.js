@@ -88,15 +88,15 @@ function adatta_display() {
     let larghezza_display, altezza_display;
 
     // proporzioni per altezza e larghezza
-    const w = 9;
-    const h = 8;
+    const h = 9;
+    const w = 7;
 
-    if ((larghezza_finestra / h) * w <= altezza_finestra) {
+    if ((larghezza_finestra / w) * h <= altezza_finestra) {
         larghezza_display = larghezza_finestra;
-        altezza_display = (larghezza_finestra / h) * w;
+        altezza_display = (larghezza_finestra / w) * h;
     } else {
         altezza_display = altezza_finestra;
-        larghezza_display = (altezza_finestra / w) * h;
+        larghezza_display = (altezza_finestra / h) * w;
     }
 
     // Imposta le dimensioni della griglia
