@@ -1,2 +1,2 @@
 # Slot-Machine-2
-Seconda versione della slot machine, piu semplice e minimal
+Megaways Slot Edited, Japanese Themed Slot
