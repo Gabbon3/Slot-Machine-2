@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slot 2</title>
+    <title>Spin Kebab</title>
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/5658864399.js" crossorigin="anonymous"></script>
     <!-- jquery -->
@@ -33,7 +33,7 @@
         </div>
         <div id="controller">
             <div id="saldo">
-                <span class="btn trasparente disabled" id="wallet">5.000,00€</span>
+                <span class="btn trasparente disabled" id="wallet">5.000,00£</span>
             </div>
             <div class="btn-sequence">
                 <!-- <span class="btn trasparente disabled">Giri bonus: <b id="html_giri_bonus">0</b></span> -->
@@ -49,7 +49,7 @@
         <span id="vincita">0.00</span>
         <div id="scatter_container">
             <span id="simbolo_espansione_scatter">
-                <img src="./img/card_a.png">
+                <img src="">
             </span>
             <span id="numero_giri">12</span>
         </div>
@@ -58,56 +58,56 @@
     <!-- puntata -->
     <div class="finestra glass" id="finestra_puntata">
         <button class="btn close" data-target="finestra_puntata">X</button>
-        <h2>Puntata</h2>
+        <h2>Bet</h2>
         <hr>
         <p>
-            Seleziona dal menu la puntata €:
+            Select from menu £:
         </p>
         <select class="input" name="puntata" id="puntata">
-            <option value="0.10">0,10€</option>
-            <option value="0.20">0,20€</option>
-            <option value="0.50">0,50€</option>
-            <option value="1.00" selected>1,00€</option>
-            <option value="1.50">1,50€</option>
-            <option value="2.00">2,00€</option>
-            <option value="3.00">3,00€</option>
-            <option value="5.00">5,00€</option>
-            <option value="7.50">7,50€</option>
-            <option value="10.00">10,00€</option>
-            <option value="20.00">20,00€</option>
-            <option value="50.00">50,00€</option>
-            <option value="75.00">75,00€</option>
-            <option value="100.00">100,00€</option>
+            <option value="0.10">0,10£</option>
+            <option value="0.20">0,20£</option>
+            <option value="0.50">0,50£</option>
+            <option value="1.00" selected>1,00£</option>
+            <option value="1.50">1,50£</option>
+            <option value="2.00">2,00£</option>
+            <option value="3.00">3,00£</option>
+            <option value="5.00">5,00£</option>
+            <option value="7.50">7,50£</option>
+            <option value="10.00">10,00£</option>
+            <option value="20.00">20,00£</option>
+            <option value="50.00">50,00£</option>
+            <option value="75.00">75,00£</option>
+            <option value="100.00">100,00£</option>
         </select>
-        <h2>Compra Funzione Bonus</h2>
+        <h2>Buy Bonus</h2>
         <hr>
         <p>
-            Il prezzo della funzione bonus dipende dalla puntata corrente (<span id="info_molt_acquisto_bonus">180</span>x la puntata corrente)
+            The price of the bonus function depends on the current bet (<span id="info_molt_acquisto_bonus">180</span>x la puntata corrente)
         </p>
-        <button class="btn" id="compra_funzione_bonus">Acquista</button>
+        <button class="btn" id="compra_funzione_bonus">Buy</button>
         <p>
-            Prezzo: <b id="prezzo_funzione_bonus">180.00</b>€
+            Price: <b id="prezzo_funzione_bonus">180.00</b>£
         </p>
-        <h2>Guadagno Giro</h2>
+        <h2>Earns:</h2>
         <hr>
         <p>
-            Visualizza qui sotto in che modo il software calcola le vincite:
+            View below how the software calculates winnings:
         </p>
         <p id="calcoli_demo"></p>
     </div>
     <!-- informazioni -->
     <div class="finestra glass" id="finestra_informazioni">
         <button class="btn close" data-target="finestra_informazioni">X</button>
-        <h2>Informazioni</h2>
+        <h2>Info</h2>
         <hr>
         <p>
-            Pagamenti relativi ad una singola linea di pagamento puntando <b>1.00€</b>:
+            Payouts related to a single payline by betting <b>1.00£</b>:
         </p>
         <table id="informazioni">
             <thead>
                 <th>#</th>
-                <th>Rarità</th>
-                <th>Pagamenti</th>
+                <th>Rarity</th>
+                <th>Payouts</th>
             </thead>
             <tbody>
 
@@ -117,21 +117,21 @@
     <!-- impostazioni -->
     <div class="finestra glass" id="finestra_impostazioni">
         <button class="btn close" data-target="finestra_impostazioni">X</button>
-        <h2>Impostazioni</h2>
+        <h2>Settings</h2>
         <hr>
-        <h3>Velocita Gioco</h3>
+        <h3>Game Speed</h3>
         <select class="input" name="velocita_slot" id="velocita_slot">
-            <option value="7">Molto Lento</option>
-            <option value="6">Lento</option>
-            <option value="5" selected>Normale</option>
-            <option value="4">Veloce</option>
-            <option value="3">Molto Veloce</option>
-            <option value="1">Istantaneo</option>
+            <option value="7">Very slow</option>
+            <option value="6">Slow</option>
+            <option value="5" selected>Default</option>
+            <option value="4">Fast</option>
+            <option value="3">Very fast</option>
+            <option value="1">Super very mega fast</option>
         </select>
-        <h3>Ricomincia</h3>
+        <h3>Start again</h3>
         <hr>
         <p>
-            Ricomincia il gioco portando nuovamente il tuo portafoglio a 5.000,00€
+            Restart the game by bringing your wallet again to 5.000,00£
         </p>
         <button class="btn danger" id="reset_game">Reset</button>
     </div>

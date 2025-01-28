@@ -10,13 +10,13 @@ class Utente {
 
     html_wallet() {
         local.set('GiapanSlot-wallet', this.wallet);
-        $('#wallet').html(html.better_value(this.wallet) + '€');
+        $('#wallet').html(html.better_value(this.wallet) + '£');
     }
 
     spin(puntata) {
         const pagamento_valido = this.valida_pagamento(puntata);
         if (!pagamento_valido && !slot._scatter) {
-            alert('Non hai abbastanza credito');
+            alert('You don\'t have enough credit');
             return false;
         }
         if (!slot._scatter && !animazione.is_shuffle) {
@@ -34,7 +34,7 @@ class Utente {
             items.n_scatter = 3
             slot.scatter();
         } else {
-            alert("Attenzione! Non hai abbastanza credito per acquistare la funzione bonus");
+            alert("Warning. You do not have enough credit to buy the bonus feature");
         }
     }
     /**

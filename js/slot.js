@@ -57,7 +57,7 @@ class Slot {
             this._scatter = true;
             html.scatter();
             // animazione
-            alert('Complimenti! Hai attivato la funzione bonus! Clicca ok per continuare.');
+            alert('Congratulations!!! You have activated the bonus feature! Click ok to continue.');
             animazione.attivazione_scatter(nuovo_simbolo_espansione, giri_bonus, MAX_giri_bonus);
         }
         if (this._scatter) {
@@ -144,7 +144,7 @@ class Slot {
             // html
             html.mostra_calcoli(
                 config.nomi_emoji[index] + ": " + 
-                vincita_linea.toFixed(2) + '€ = ' + 
+                vincita_linea.toFixed(2) + '£ = ' + 
                 moltiplicatore_simbolo + " * " + 
                 (m == 0 ? 1 : m) + " * " + 
                 slot.moltiplicatori_scatter[index] + " * " + 

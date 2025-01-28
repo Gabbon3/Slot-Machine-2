@@ -138,7 +138,7 @@ class Animazione {
                 // utente
                 utente.wallet += slot.vincita_giro;
                 utente.html_wallet();
-                html.mostra_calcoli(' = ' + slot.vincita_giro.toFixed(2) + '€');
+                html.mostra_calcoli(' = ' + slot.vincita_giro.toFixed(2) + '£');
                 animazione.is_shuffle = false;
             }
             // ---
@@ -178,7 +178,7 @@ class Animazione {
             utente.wallet += slot.vincita_giro;
             utente.html_wallet();
             // ---
-            html.mostra_calcoli(' = <b>' + slot.vincita_giro.toFixed(2) + '€</b>');
+            html.mostra_calcoli(' = <b>' + slot.vincita_giro.toFixed(2) + '£</b>');
             animazione.is_shuffle = false;
             slot.giri_bonus--;
             $('#giri_bonus').text(slot.giri_bonus);

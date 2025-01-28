@@ -53,7 +53,7 @@ $(document).ready(() => {
     });
     // compra funzione bonus
     $('#compra_funzione_bonus').click(() => {
-        const conferma = confirm('Sicuro di voler procedere all\'acquisto della funzione bonus per ' + slot.prezzo_funzione_bonus + '€?');
+        const conferma = confirm('Sicuro di voler procedere all\'acquisto della funzione bonus per ' + slot.prezzo_funzione_bonus + '£?');
         if (conferma) {
             finestra.close('finestra_puntata');
             utente.compra_funzione_bonus();
