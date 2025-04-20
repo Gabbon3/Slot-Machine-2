@@ -56,7 +56,7 @@ class Random {
      * @returns {number}
      */
     min_max(min, max) {
-        return Math.round(Math.random() * (max - min)) + min;
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     /**
      * genera un numero casuale sicuro
@@ -65,18 +65,17 @@ class Random {
      * @returns {int} numero casuale sicuro
      */
     secure_min_max(min, max) {
-        // Calcola la lunghezza del range
-        const range = max - min;
-        // Crea un array di bytes con la lunghezza del range
-        const byteArray = new Uint8Array(1);
+        // Calcola la lunghezza del range, inclusivo di max
+        const range = max - min + 1;
+        // Crea un array di bytes con la lunghezza di 1
+        const byte_array = new Uint8Array(1);
         // Genera un numero casuale all'interno del range utilizzando crypto.getRandomValues()
-        // Byte casuale verrà mappato nel range specificato
-        window.crypto.getRandomValues(byteArray);
-        let randomNumber = byteArray[0] / 255;
+        window.crypto.getRandomValues(byte_array);
+        let random_number = byte_array[0] / 256;
         // Mappa il numero casuale all'interno del range specificato
-        randomNumber = Math.floor(randomNumber * (range + 1));
+        random_number = Math.floor(random_number * range);
         // Aggiungi il minimo per ottenere un numero all'interno del range desiderato
-        return min + randomNumber;
+        return min + random_number;
     }
 }
 
